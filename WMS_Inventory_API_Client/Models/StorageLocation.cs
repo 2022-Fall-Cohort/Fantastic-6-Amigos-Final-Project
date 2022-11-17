@@ -15,7 +15,7 @@
         public virtual List<Container>? containers { get; set; }
 
 
-         public StorageLocation (int id, string? locationname, string? address1, string? address2, string? city, string? state, int? zipCode, int longitude, int latitude, int accountid)
+         public StorageLocation (int id, string? locationname, string? address1, string? address2, string? city, string? state, int? zipCode, double? longitude, double? latitude, int? accountid)
         {
             Id = id;
             LocationName = locationname;

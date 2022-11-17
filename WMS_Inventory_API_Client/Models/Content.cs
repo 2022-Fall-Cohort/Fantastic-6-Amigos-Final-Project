@@ -19,8 +19,5 @@ namespace WMS_Inventory_API_Client.Models
         {
             return;
         }
-
     }
-
-    
 }
