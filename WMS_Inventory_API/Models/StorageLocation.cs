@@ -12,7 +12,7 @@
         public double? Longitude { get; set; }
         public double? Latitude { get; set; }
         public int? AccountId { get; set; }
-        public virtual List<Container>? containers { get; set; }
+        public virtual List<Container>? Container { get; set; }
     }
 
 }

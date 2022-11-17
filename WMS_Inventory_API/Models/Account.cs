@@ -9,6 +9,6 @@
         public string? City { get; set; }
         public string? State { get; set; }
         public int? ZipCode { get; set; }
-        public virtual List<StorageLocation>? storageLocations { get; set; }
+        public virtual List<StorageLocation>? StorageLocation { get; set; }
     }
 }

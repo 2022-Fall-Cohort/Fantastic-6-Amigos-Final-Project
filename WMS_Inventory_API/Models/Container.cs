@@ -9,6 +9,6 @@ namespace WMS_Inventory_API.Models
         public string? Description { get; set; }
         public int? StorageLocationId { get; set; }
         public virtual StorageLocation? StorageLocation { get; set; }
-        public virtual List<Content>? contents { get; set; }
+        public virtual List<Content>? Content { get; set; }
     }
 }
