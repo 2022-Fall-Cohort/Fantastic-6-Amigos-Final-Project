@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using WMS_Inventory_API_Client.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<WMS_Inventory_API_ClientContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("WMS_Inventory_API_ClientContext") ?? throw new InvalidOperationException("Connection string 'WMS_Inventory_API_ClientContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
