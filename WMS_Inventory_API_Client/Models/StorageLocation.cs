@@ -13,5 +13,30 @@
         public double? Latitude { get; set; }
         public int? AccountId { get; set; }
         public virtual List<Container>? containers { get; set; }
+
+
+         public StorageLocation (int id, string? locationname, string? address1, string? address2, string? city, string? state, int? zipCode, int longitude, int latitude, int accountid)
+        {
+            Id = id;
+            LocationName = locationname;
+            Address1 = address1;
+            Address2 = address2;
+            City = city; 
+            State = state; 
+            ZipCode = zipCode;
+            Longitude = longitude;
+            Latitude = latitude;
+            AccountId = accountid; 
+
+        }
+
+        public StorageLocation()
+        {
+            return;
+        }
+
     }
+  
+
+
 }
