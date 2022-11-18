@@ -10,6 +10,12 @@
     <h4>Container</h4>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StorageLocation.LocationName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StorageLocation.LocationName)
+        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Type)
         </dt>
@@ -21,12 +27,6 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StorageLocation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StorageLocation.Id)
         </dd>
     </dl>
 </div>

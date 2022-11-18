@@ -11,7 +11,7 @@ namespace WMS_Inventory_API_Client.Controllers
     {
         private IAccountService? _service;
         private static readonly HttpClient client = new HttpClient();
-        private string requestUri = "https://localhost:7153/api/Account/";
+        private string requestUri = "https://localhost:7153/api/Accounts/";
         public AccountsController(IAccountService service)
         {
             _service = service ?? throw new ArgumentNullException(nameof(service));
@@ -20,7 +20,7 @@ namespace WMS_Inventory_API_Client.Controllers
                 new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Add("User-Agent", "Jim's API");
         }
-        // Example: https://localhost:7153/api/Account
+        // Example: https://localhost:7153/api/Accounts
         public async Task<IActionResult> Index()
         {
             var response = await _service.FindAll();

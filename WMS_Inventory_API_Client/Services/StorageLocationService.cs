@@ -7,7 +7,7 @@ namespace WMS_Inventory_API_Client.Services
     public class StorageLocationService : IStorageLocationService
     {
         private readonly HttpClient _client;
-        public const string BasePath = "/api/StorageLocation/";
+        public const string BasePath = "/api/StorageLocations/";
 
         public StorageLocationService(HttpClient client)
         {

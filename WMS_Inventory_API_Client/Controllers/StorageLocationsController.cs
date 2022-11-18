@@ -11,6 +11,7 @@ namespace WMS_Inventory_API_Client.Controllers
         private IStorageLocationService? _service;
         private static readonly HttpClient client = new HttpClient();
         private string requestUri = "https://localhost:7153/api/StorageLocations/";
+
         public StorageLocationController(IStorageLocationService service)
         {
             _service = service ?? throw new ArgumentNullException(nameof(service));
