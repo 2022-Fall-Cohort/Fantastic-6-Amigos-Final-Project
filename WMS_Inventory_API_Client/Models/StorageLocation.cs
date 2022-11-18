@@ -2,7 +2,7 @@
 {
     public class StorageLocation
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string? LocationName { get; set; }
         public string? Address1 { get; set; }
         public string? Address2 { get; set; }
@@ -15,7 +15,7 @@
         public virtual List<Container>? containers { get; set; }
 
 
-         public StorageLocation (int id, string? locationname, string? address1, string? address2, string? city, string? state, int? zipCode, double? longitude, double? latitude, int? accountid)
+         public StorageLocation (int? id, string? locationname, string? address1, string? address2, string? city, string? state, int? zipCode, double? longitude, double? latitude, int? accountid)
         {
             Id = id;
             LocationName = locationname;

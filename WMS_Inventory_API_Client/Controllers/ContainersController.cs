@@ -155,14 +155,14 @@ namespace WMS_Inventory_API_Client.Controllers
             {
                 _context.Container.Remove(container);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ContainerExists(int? id)
         {
-          return _context.Container.Any(e => e.Id == id);
+            return _context.Container.Any(e => e.Id == id);
         }
     }
 }

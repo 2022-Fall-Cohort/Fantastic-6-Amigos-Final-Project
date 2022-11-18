@@ -16,16 +16,16 @@ namespace WMS_Inventory_API_Client
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddHttpClient<IAccountService, AccountService>(c=>
-            c.BaseAddress = new Uri("https://localhost:7256/"));
+            c.BaseAddress = new Uri("https://localhost:7153/"));
             
             builder.Services.AddHttpClient<IContentService, ContentService>(c=>
-            c.BaseAddress = new Uri("https://localhost:7256/"));
+            c.BaseAddress = new Uri("https://localhost:7153/"));
             
             builder.Services.AddHttpClient<IContainerService, ContainerService>(c=>
-            c.BaseAddress = new Uri("https://localhost:7256/"));
+            c.BaseAddress = new Uri("https://localhost:7153/"));
 
             builder.Services.AddHttpClient<IStorageLocationService, StorageLocationService>(c=>
-            c.BaseAddress = new Uri("https://localhost:7256/"));
+            c.BaseAddress = new Uri("https://localhost:7153/"));
             
             var app = builder.Build();
             // Configure the HTTP request pipeline.

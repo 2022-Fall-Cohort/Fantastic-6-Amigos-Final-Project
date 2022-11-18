@@ -1,161 +1,93 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using WMS_Inventory_API_Client.Data;
+using System.Net.Http.Formatting;
+using System.Net.Http.Headers;
 using WMS_Inventory_API_Client.Models;
-
+using WMS_Inventory_API_Client.Services.Interfaces;
 namespace WMS_Inventory_API_Client.Controllers
 {
-    public class StorageLocationsController : Controller
+    public class StorageLocationController : Controller
     {
-        private readonly WMS_Inventory_API_ClientContext _context;
-
-        public StorageLocationsController(WMS_Inventory_API_ClientContext context)
+        private IStorageLocationService? _service;
+        private static readonly HttpClient client = new HttpClient();
+        private string requestUri = "https://localhost:7153/api/StorageLocations/";
+        public StorageLocationController(IStorageLocationService service)
         {
-            _context = context;
+            _service = service ?? throw new ArgumentNullException(nameof(service));
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("User-Agent", "Inventory API");
         }
-
-        // GET: StorageLocations
+        // Example: https://localhost:7256/api/StorageLocations
         public async Task<IActionResult> Index()
         {
-              return View(await _context.StorageLocation.ToListAsync());
+            var response = await _service.FindAll();
+            return View(response);
         }
-
-        // GET: StorageLocations/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: StorageLocation/Details/5
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null || _context.StorageLocation == null)
-            {
-                return NotFound();
-            }
-
-            var storageLocation = await _context.StorageLocation
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var storageLocation = await _service.FindOne(id);
             if (storageLocation == null)
             {
                 return NotFound();
             }
-
             return View(storageLocation);
         }
-
-        // GET: StorageLocations/Create
-        public IActionResult Create()
+        // GET: StorageLocation/Create
+        public ActionResult Create()
         {
             return View();
         }
-
-        // POST: StorageLocations/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: StorageLocation/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,LocationName,Address1,Address2,City,State,ZipCode,Longitude,Latitude,AccountId")] StorageLocation storageLocation)
+        public async Task<IActionResult> Create([Bind("Id, LocationName, Address1, Address2, City, State, ZipCode, Longitude, Latitude, AccountId")] StorageLocation storageLocation)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(storageLocation);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(storageLocation);
+            storageLocation.Id = null;
+            var resultPost = await client.PostAsync<StorageLocation>(requestUri, storageLocation, new JsonMediaTypeFormatter());
+            return RedirectToAction(nameof(Index));
         }
-
-        // GET: StorageLocations/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: StorageLocation/Edit/5
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null || _context.StorageLocation == null)
-            {
-                return NotFound();
-            }
-
-            var storageLocation = await _context.StorageLocation.FindAsync(id);
+            var storageLocation = await _service.FindOne(id);
             if (storageLocation == null)
             {
                 return NotFound();
             }
             return View(storageLocation);
         }
-
-        // POST: StorageLocations/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: StorageLocation/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,LocationName,Address1,Address2,City,State,ZipCode,Longitude,Latitude,AccountId")] StorageLocation storageLocation)
+        public async Task<IActionResult> Edit(int id, [Bind("Id, LocationName, Address1, Address2, City, State, ZipCode, Longitude, Latitude, AccountId")] StorageLocation storageLocation)
         {
             if (id != storageLocation.Id)
             {
                 return NotFound();
             }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(storageLocation);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!StorageLocationExists(storageLocation.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(storageLocation);
+            var resultPut = await client.PutAsync<StorageLocation>(requestUri + storageLocation.Id.ToString(), storageLocation, new JsonMediaTypeFormatter());
+            return RedirectToAction(nameof(Index));
         }
-
-        // GET: StorageLocations/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // GET: StorageLocation/Delete/5
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null || _context.StorageLocation == null)
-            {
-                return NotFound();
-            }
-
-            var storageLocation = await _context.StorageLocation
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var storageLocation = await _service.FindOne(id);
             if (storageLocation == null)
             {
                 return NotFound();
             }
-
             return View(storageLocation);
         }
-
-        // POST: StorageLocations/Delete/5
+        // POST: StorageLocation/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.StorageLocation == null)
-            {
-                return Problem("Entity set 'WMS_Inventory_API_ClientContext.StorageLocation'  is null.");
-            }
-            var storageLocation = await _context.StorageLocation.FindAsync(id);
-            if (storageLocation != null)
-            {
-                _context.StorageLocation.Remove(storageLocation);
-            }
-            
-            await _context.SaveChangesAsync();
+            var resultDelete = await client.DeleteAsync(requestUri + id.ToString());
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool StorageLocationExists(int id)
-        {
-          return _context.StorageLocation.Any(e => e.Id == id);
         }
     }
 }

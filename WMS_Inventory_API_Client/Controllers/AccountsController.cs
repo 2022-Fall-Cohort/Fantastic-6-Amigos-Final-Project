@@ -1,161 +1,94 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using WMS_Inventory_API_Client.Data;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Net.Http.Formatting;
+using System.Net.Http.Headers;
 using WMS_Inventory_API_Client.Models;
+using WMS_Inventory_API_Client.Services.Interfaces;
 
 namespace WMS_Inventory_API_Client.Controllers
+
 {
     public class AccountsController : Controller
     {
-        private readonly WMS_Inventory_API_ClientContext _context;
-
-        public AccountsController(WMS_Inventory_API_ClientContext context)
+        private IAccountService? _service;
+        private static readonly HttpClient client = new HttpClient();
+        private string requestUri = "https://localhost:7153/api/Account/";
+        public AccountsController(IAccountService service)
         {
-            _context = context;
+            _service = service ?? throw new ArgumentNullException(nameof(service));
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("User-Agent", "Jim's API");
         }
-
-        // GET: Accounts
+        // Example: https://localhost:7153/api/Account
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Account.ToListAsync());
+            var response = await _service.FindAll();
+            return View(response);
         }
-
-        // GET: Accounts/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: Account/Details/5
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null || _context.Account == null)
-            {
-                return NotFound();
-            }
-
-            var account = await _context.Account
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var account = await _service.FindOne(id);
             if (account == null)
             {
                 return NotFound();
             }
-
             return View(account);
         }
-
-        // GET: Accounts/Create
-        public IActionResult Create()
+        // GET: Account/Create
+        public ActionResult Create()
         {
             return View();
         }
-
-        // POST: Accounts/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Account/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Address1,Address2,City,State,ZipCode")] Account account)
+        public async Task<IActionResult> Create([Bind("Id,Name,Address1,Address2,City,State,Zipcode")] Account account)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(account);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(account);
+            account.Id = null;
+            var resultPost = await client.PostAsync<Account>(requestUri, account, new JsonMediaTypeFormatter());
+            return RedirectToAction(nameof(Index));
         }
-
-        // GET: Accounts/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: Account/Edit/5
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null || _context.Account == null)
-            {
-                return NotFound();
-            }
-
-            var account = await _context.Account.FindAsync(id);
+            var account = await _service.FindOne(id);
             if (account == null)
             {
                 return NotFound();
             }
             return View(account);
         }
-
-        // POST: Accounts/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Account/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int? id, [Bind("Id,Name,Address1,Address2,City,State,ZipCode")] Account account)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Address1,Address2,City,State,Zipcode")] Account account)
         {
             if (id != account.Id)
             {
                 return NotFound();
             }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(account);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!AccountExists(account.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(account);
+            var resultPut = await client.PutAsync<Account>(requestUri + account.Id.ToString(), account, new JsonMediaTypeFormatter());
+            return RedirectToAction(nameof(Index));
         }
-
-        // GET: Accounts/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // GET: Account/Delete/5
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null || _context.Account == null)
-            {
-                return NotFound();
-            }
-
-            var account = await _context.Account
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var account = await _service.FindOne(id);
             if (account == null)
             {
                 return NotFound();
             }
-
             return View(account);
         }
-
-        // POST: Accounts/Delete/5
+        // POST: Account/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int? id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Account == null)
-            {
-                return Problem("Entity set 'WMS_Inventory_API_ClientContext.Account'  is null.");
-            }
-            var account = await _context.Account.FindAsync(id);
-            if (account != null)
-            {
-                _context.Account.Remove(account);
-            }
-            
-            await _context.SaveChangesAsync();
+            var resultDelete = await client.DeleteAsync(requestUri + id.ToString());
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool AccountExists(int? id)
-        {
-          return _context.Account.Any(e => e.Id == id);
         }
     }
 }

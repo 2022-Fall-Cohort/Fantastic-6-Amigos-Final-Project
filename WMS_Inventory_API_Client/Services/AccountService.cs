@@ -1,6 +1,7 @@
-using WMS_Inventory_API_Client.Helpers;
+﻿using WMS_Inventory_API_Client.Helpers;
 using WMS_Inventory_API_Client.Models;
-using WMS_Inventory_API_Client.Interfaces;
+using WMS_Inventory_API_Client.Services.Interfaces;
+
 namespace WMS_Inventory_API_Client.Services
 {
     public class AccountService : IAccountService
