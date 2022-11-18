@@ -2,14 +2,10 @@
 
 #nullable disable
 
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
-
-namespace WMSInventoryAPI.Migrations
+namespace WMS_Inventory_API.Migrations
 {
-    /// <inheritdoc />
-    public partial class firstMigration : Migration
+    public partial class NewMigration : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -104,11 +100,12 @@ namespace WMSInventoryAPI.Migrations
             migrationBuilder.InsertData(
                 table: "StorageLocation",
                 columns: new[] { "Id", "AccountId", "Address1", "Address2", "City", "Latitude", "LocationName", "Longitude", "State", "ZipCode" },
-                values: new object[,]
-                {
-                    { 1, 1, "5814 N 17th St", "", "Tampa", -82.440321999999995, "Home Shop", 27.995778000000001, "FL", 33610 },
-                    { 2, 1, "1711 E Hillsborough Ave", "", "Tampa", -82.441528000000005, "Extra Space Storage", 28.000686999999999, "FL", 33610 }
-                });
+                values: new object[] { 1, 1, "5814 N 17th St", "", "Tampa", -82.440321999999995, "Home Shop", 27.995778000000001, "FL", 33610 });
+
+            migrationBuilder.InsertData(
+                table: "StorageLocation",
+                columns: new[] { "Id", "AccountId", "Address1", "Address2", "City", "Latitude", "LocationName", "Longitude", "State", "ZipCode" },
+                values: new object[] { 2, 1, "1711 E Hillsborough Ave", "", "Tampa", -82.441528000000005, "Extra Space Storage", 28.000686999999999, "FL", 33610 });
 
             migrationBuilder.InsertData(
                 table: "Container",
@@ -159,7 +156,6 @@ namespace WMSInventoryAPI.Migrations
                 column: "AccountId");
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

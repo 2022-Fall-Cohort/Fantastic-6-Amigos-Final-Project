@@ -8,7 +8,7 @@ using WMS_Inventory_API;
 
 #nullable disable
 
-namespace WMSInventoryAPI.Migrations
+namespace WMS_Inventory_API.Migrations
 {
     [DbContext(typeof(InventoryContext))]
     partial class InventoryContextModelSnapshot : ModelSnapshot
@@ -17,10 +17,10 @@ namespace WMSInventoryAPI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0")
+                .HasAnnotation("ProductVersion", "6.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("WMS_Inventory_API.Models.Account", b =>
                 {
@@ -28,7 +28,7 @@ namespace WMSInventoryAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Address1")
                         .HasColumnType("nvarchar(max)");
@@ -71,7 +71,7 @@ namespace WMSInventoryAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -125,7 +125,7 @@ namespace WMSInventoryAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int?>("ContainerId")
                         .HasColumnType("int");
@@ -256,7 +256,7 @@ namespace WMSInventoryAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int?>("AccountId")
                         .HasColumnType("int");
@@ -323,7 +323,7 @@ namespace WMSInventoryAPI.Migrations
             modelBuilder.Entity("WMS_Inventory_API.Models.Container", b =>
                 {
                     b.HasOne("WMS_Inventory_API.Models.StorageLocation", "StorageLocation")
-                        .WithMany("containers")
+                        .WithMany("Container")
                         .HasForeignKey("StorageLocationId");
 
                     b.Navigation("StorageLocation");
@@ -332,30 +332,30 @@ namespace WMSInventoryAPI.Migrations
             modelBuilder.Entity("WMS_Inventory_API.Models.Content", b =>
                 {
                     b.HasOne("WMS_Inventory_API.Models.Container", null)
-                        .WithMany("contents")
+                        .WithMany("Content")
                         .HasForeignKey("ContainerId");
                 });
 
             modelBuilder.Entity("WMS_Inventory_API.Models.StorageLocation", b =>
                 {
                     b.HasOne("WMS_Inventory_API.Models.Account", null)
-                        .WithMany("storageLocations")
+                        .WithMany("StorageLocation")
                         .HasForeignKey("AccountId");
                 });
 
             modelBuilder.Entity("WMS_Inventory_API.Models.Account", b =>
                 {
-                    b.Navigation("storageLocations");
+                    b.Navigation("StorageLocation");
                 });
 
             modelBuilder.Entity("WMS_Inventory_API.Models.Container", b =>
                 {
-                    b.Navigation("contents");
+                    b.Navigation("Content");
                 });
 
             modelBuilder.Entity("WMS_Inventory_API.Models.StorageLocation", b =>
                 {
-                    b.Navigation("containers");
+                    b.Navigation("Container");
                 });
 #pragma warning restore 612, 618
         }
