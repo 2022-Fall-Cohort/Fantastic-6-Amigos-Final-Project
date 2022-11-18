@@ -2,7 +2,47 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<body>
+    <div align="center" class="menu-header">
+        <h1>
+            <span style="font-size:40px; text-align:center; color:green">WMS Inventory Tracker</span>
+        </h1>
+
+    </div>
+    <br />
+    <div align="left" class="menu">
+        <div align="center">
+            <h1>
+                <span style="font-size:30px;color:green">Main Menu</span>
+            </h1>
+        </div>
+        <br />
+        <ol>
+            <li>
+                <a style="color: indianred" href='@Url.Action("Index", "Account")'>Display</a> account information
+            </li>
+            <li>
+                <a style="color: indianred" href='@Url.Action("Index", "StorageLocation")'>Display</a> a list of storage locations
+            </li>
+            <li>
+                <a style="color: indianred" href='@Url.Action("Index", "Container")'>Display</a> a list of containers
+            </li>
+            <li>
+                <a style="color: indianred" href='@Url.Action("Index", "Content")'>Display</a> a list contents
+            </li>
+            <li>
+                <a style="color: indianred" href='@Url.Action("Create", "Account")'>Add</a> a new classic account
+            </li>
+            <li>
+                <a style="color: indianred" href='@Url.Action("Create", "StorageLocation")'>Add</a> a new storage location
+            </li>
+            <li>
+                <a style="color: indianred" href='@Url.Action("Create", "Container")'>Add</a> a new container
+            </li>
+            <li>
+                <a style="color: indianred" href='@Url.Action("Create", "Content")'>Add</a> a new content
+            </li>
+
+        </ol>
+    </div>
+</body>
