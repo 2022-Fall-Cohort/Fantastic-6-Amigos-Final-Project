@@ -13,7 +13,7 @@ namespace WMS_Inventory_API_Client.Controllers
 
         private static readonly HttpClient client = new HttpClient();
 
-        private string requestUri = "https://localhost:7153/api/Contents/";
+        private string requestUri = "https://localhost:7153/api/content/";
 
         public ContentsController(IContentService service)
         {
@@ -27,7 +27,7 @@ namespace WMS_Inventory_API_Client.Controllers
             client.DefaultRequestHeaders.Add("User-Agent", "Jim's API");
         }
 
-        // Example: https://localhost:7153/api/Contents
+        // Example: https://localhost:7153/api/content
         public async Task<IActionResult> Index()
         {
             var response = await _service.FindAll();

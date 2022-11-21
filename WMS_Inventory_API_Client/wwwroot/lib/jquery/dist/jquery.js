@@ -2200,7 +2200,7 @@ Expr = Sizzle.selectors = {
 			return elem.selected === true;
 		},
 
-		// Contents
+		// content
 		"empty": function( elem ) {
 
 			// http://www.w3.org/TR/selectors/#empty-pseudo
@@ -3241,7 +3241,7 @@ var rparentsprev = /^(?:parents|prev(?:Until|All))/,
 	// Methods guaranteed to produce a unique set when starting from a unique set
 	guaranteedUnique = {
 		children: true,
-		contents: true,
+		content: true,
 		next: true,
 		prev: true
 	};
@@ -3367,7 +3367,7 @@ jQuery.each( {
 	children: function( elem ) {
 		return siblings( elem.firstChild );
 	},
-	contents: function( elem ) {
+	content: function( elem ) {
 		if ( elem.contentDocument != null &&
 
 			// Support: IE 11+
@@ -4928,7 +4928,7 @@ var rscriptType = ( /^$|^module$|\/(?:java|ecma)script/i );
 	support.noCloneChecked = !!div.cloneNode( true ).lastChild.defaultValue;
 
 	// Support: IE <=9 only
-	// IE <=9 replaces <option> tags with their contents when inserted outside of
+	// IE <=9 replaces <option> tags with their content when inserted outside of
 	// the select element.
 	div.innerHTML = "<option></option>";
 	support.option = !!div.lastChild;
@@ -9122,7 +9122,7 @@ function ajaxExtend( target, src ) {
 function ajaxHandleResponses( s, jqXHR, responses ) {
 
 	var ct, type, finalDataType, firstDataType,
-		contents = s.contents,
+		content = s.content,
 		dataTypes = s.dataTypes;
 
 	// Remove auto dataType and get content-type in the process
@@ -9135,8 +9135,8 @@ function ajaxHandleResponses( s, jqXHR, responses ) {
 
 	// Check if we're dealing with a known content-type
 	if ( ct ) {
-		for ( type in contents ) {
-			if ( contents[ type ] && contents[ type ].test( ct ) ) {
+		for ( type in content ) {
+			if ( content[ type ] && content[ type ].test( ct ) ) {
 				dataTypes.unshift( type );
 				break;
 			}
@@ -9311,7 +9311,7 @@ jQuery.extend( {
 			json: "application/json, text/javascript"
 		},
 
-		contents: {
+		content: {
 			xml: /\bxml\b/,
 			html: /\bhtml/,
 			json: /\bjson\b/
@@ -9916,10 +9916,10 @@ jQuery.fn.extend( {
 
 		return this.each( function() {
 			var self = jQuery( this ),
-				contents = self.contents();
+				content = self.content();
 
-			if ( contents.length ) {
-				contents.wrapAll( html );
+			if ( content.length ) {
+				content.wrapAll( html );
 
 			} else {
 				self.append( html );
@@ -10121,7 +10121,7 @@ jQuery.ajaxTransport( function( options ) {
 // Prevent auto-execution of scripts when no explicit dataType was provided (See gh-2432)
 jQuery.ajaxPrefilter( function( s ) {
 	if ( s.crossDomain ) {
-		s.contents.script = false;
+		s.content.script = false;
 	}
 } );
 
@@ -10131,7 +10131,7 @@ jQuery.ajaxSetup( {
 		script: "text/javascript, application/javascript, " +
 			"application/ecmascript, application/x-ecmascript"
 	},
-	contents: {
+	content: {
 		script: /\b(?:java|ecma)script\b/
 	},
 	converters: {
