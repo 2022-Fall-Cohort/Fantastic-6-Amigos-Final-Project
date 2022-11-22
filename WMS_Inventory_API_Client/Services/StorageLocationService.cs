@@ -30,7 +30,7 @@ namespace WMS_Inventory_API_Client.Services
 
             var response = await responseGet.ReadContentAsync<StorageLocation>();
 
-            var storageLocation = new StorageLocation(response.Id, response.LocationName, response.Address1, response.Address2, response.City, response.State, response.ZipCode, response.Longitude, response.Latitude, response.AccountId);
+            var storageLocation = new StorageLocation(response.Id, response.LocationName, response.Address1, response.Address2, response.City, response.State, response.ZipCode, response.Longitude, response.Latitude, response.AccountId, response.containers);
 
             return storageLocation;
         }

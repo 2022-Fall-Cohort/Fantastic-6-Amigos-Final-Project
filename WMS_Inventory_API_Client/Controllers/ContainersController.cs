@@ -60,7 +60,8 @@ namespace WebMVC_API_Client.Controllers
         // POST: Container/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Type,Description,StorageLocationID,StorageLocation")] Container container)
+        //public async Task<IActionResult> Create([Bind("Id,Type,Description,StorageLocationID")] Container container)
+        public async Task<IActionResult> Create(Container container)
         {
             container.Id = null;
             var resultPost = await client.PostAsync<Container>(requestUri, container, new JsonMediaTypeFormatter());
@@ -86,7 +87,8 @@ namespace WebMVC_API_Client.Controllers
         // POST: Container/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,Description,StorageLocationID,StorageLocation")] Container container)
+        //public async Task<IActionResult> Edit(int id, [Bind("Id,Type,Description,StorageLocationID,StorageLocation")] Container container)
+        public async Task<IActionResult> Edit(int id, Container container)
         {
             if (id != container.Id)
             {

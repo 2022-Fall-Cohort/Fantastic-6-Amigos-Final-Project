@@ -1,4 +1,6 @@
-﻿namespace WMS_Inventory_API_Client.Models
+﻿using Microsoft.VisualBasic;
+
+namespace WMS_Inventory_API_Client.Models
 {
     public class StorageLocation
     {
@@ -15,7 +17,7 @@
         public virtual List<Container>? containers { get; set; }
 
 
-         public StorageLocation (int? id, string? locationname, string? address1, string? address2, string? city, string? state, int? zipCode, double? longitude, double? latitude, int? accountid)
+         public StorageLocation (int? id, string? locationname, string? address1, string? address2, string? city, string? state, int? zipCode, double? longitude, double? latitude, int? accountid, List<Container> containerList)
         {
             Id = id;
             LocationName = locationname;
@@ -26,7 +28,9 @@
             ZipCode = zipCode;
             Longitude = longitude;
             Latitude = latitude;
-            AccountId = accountid; 
+            AccountId = accountid;
+            var tmp_containers = containerList ?? new List<Container>();
+            containers = tmp_containers;
 
         }
 
