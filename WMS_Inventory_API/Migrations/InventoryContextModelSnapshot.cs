@@ -39,7 +39,13 @@ namespace WMS_Inventory_API.Migrations
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
@@ -59,7 +65,9 @@ namespace WMS_Inventory_API.Migrations
                             Address1 = "5814 N 17th St",
                             Address2 = "",
                             City = "Tampa",
+                            Email = "charles.baker@gmail.com",
                             Name = "Charles Baker",
+                            Password = "password",
                             State = "FL",
                             ZipCode = 33610
                         });

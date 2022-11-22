@@ -13,7 +13,7 @@ namespace WMS_Inventory_API
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = "Server=localhost,1433;Database=InventoryAPI;user=sa;pwd=jk$19550829";
+            var connectionString = "Server=(localdb)\\mssqllocaldb;Database=InventoryAPI;Trusted_Connection=True;";
 
             optionsBuilder.UseSqlServer(connectionString);
 
@@ -23,7 +23,7 @@ namespace WMS_Inventory_API
         protected override void OnModelCreating(ModelBuilder model)
         {
             model.Entity<Account>().HasData(
-                new Account() { Id = 1, Name = "Charles Baker", Address1 = "5814 N 17th St", Address2 = "", City = "Tampa", State = "FL", ZipCode = 33610 });
+                new Account() { Id = 1, Name = "Charles Baker", Address1 = "5814 N 17th St", Address2 = "", City = "Tampa", State = "FL", ZipCode = 33610, Email = "charles.baker@gmail.com", Password = "password"});
 
             model.Entity<StorageLocation>().HasData(
                 new StorageLocation() { Id = 1, LocationName = "Home Shop", Address1 = "5814 N 17th St", Address2 = "", City = "Tampa", State = "FL", ZipCode = 33610, Longitude = 27.995778, Latitude = -82.440322, AccountId = 1 },

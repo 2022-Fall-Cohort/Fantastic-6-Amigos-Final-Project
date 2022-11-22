@@ -12,7 +12,7 @@ using WMS_Inventory_API;
 namespace WMS_Inventory_API.Migrations
 {
     [DbContext(typeof(InventoryContext))]
-    [Migration("20221118154315_NewMigration")]
+    [Migration("20221122154144_NewMigration")]
     partial class NewMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,7 +41,13 @@ namespace WMS_Inventory_API.Migrations
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
@@ -61,7 +67,9 @@ namespace WMS_Inventory_API.Migrations
                             Address1 = "5814 N 17th St",
                             Address2 = "",
                             City = "Tampa",
+                            Email = "charles.baker@gmail.com",
                             Name = "Charles Baker",
+                            Password = "password",
                             State = "FL",
                             ZipCode = 33610
                         });

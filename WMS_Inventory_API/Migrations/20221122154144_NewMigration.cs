@@ -19,7 +19,9 @@ namespace WMS_Inventory_API.Migrations
                     Address2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     State = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ZipCode = table.Column<int>(type: "int", nullable: true)
+                    ZipCode = table.Column<int>(type: "int", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -94,8 +96,8 @@ namespace WMS_Inventory_API.Migrations
 
             migrationBuilder.InsertData(
                 table: "Account",
-                columns: new[] { "Id", "Address1", "Address2", "City", "Name", "State", "ZipCode" },
-                values: new object[] { 1, "5814 N 17th St", "", "Tampa", "Charles Baker", "FL", 33610 });
+                columns: new[] { "Id", "Address1", "Address2", "City", "Email", "Name", "Password", "State", "ZipCode" },
+                values: new object[] { 1, "5814 N 17th St", "", "Tampa", "charles.baker@gmail.com", "Charles Baker", "password", "FL", 33610 });
 
             migrationBuilder.InsertData(
                 table: "StorageLocation",
