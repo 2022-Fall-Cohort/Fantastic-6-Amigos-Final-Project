@@ -44,7 +44,7 @@ namespace WMS_Inventory_API_Client.Controllers
         // POST: Account/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Address1,Address2,City,State,Zipcode")] Account account)
+        public async Task<IActionResult> Create([Bind("Id,Name,Address1,Address2,City,State,Zipcode,Email,Password")] Account account)
         {
             account.Id = null;
             var resultPost = await client.PostAsync<Account>(requestUri, account, new JsonMediaTypeFormatter());
@@ -63,7 +63,7 @@ namespace WMS_Inventory_API_Client.Controllers
         // POST: Account/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Address1,Address2,City,State,Zipcode")] Account account)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Address1,Address2,City,State,Zipcode,Email,Password")] Account account)
         {
             if (id != account.Id)
             {
