@@ -9,9 +9,11 @@
         public string? City { get; set; }
         public string? State { get; set; }
         public int? ZipCode { get; set; }
+        public string? Email {get; set;}
+        public string? Password {get; set;}
         public virtual List<StorageLocation>? storageLocations { get; set; }
 
-        public Account(int? id, string? name, string? address1, string? address2, string? city, string? state, int? zipCode)
+        public Account(int? id, string? name, string? address1, string? address2, string? city, string? state, int? zipCode, string? email, string? password)
         {
             Id = id;
             Name = name;
@@ -20,6 +22,8 @@
             City = city;
             State = state;
             ZipCode = zipCode;
+            Email = email;
+            Password = password;
         }
 
         public Account()
