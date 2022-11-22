@@ -1,3 +1,4 @@
+using System.Diagnostics.Metrics;
 using WMS_Inventory_API_Client.Helpers;
 using WMS_Inventory_API_Client.Models;
 using WMS_Inventory_API_Client.Services.Interfaces;
@@ -21,8 +22,12 @@ namespace WMS_Inventory_API_Client.Services
         {
             var request = BasePath + id.ToString();
             var responseGet = await _client.GetAsync(request);
+
             var response = await responseGet.ReadContentAsync<Container>();
+
+            //var storageLocation = new StorageLocation { LocationName = response.StorageLocation.LocationName };
             var container = new Container(response.Id, response.Type, response.Description, response.StorageLocationId, response.StorageLocation, response.content);
+            
             return container;
         }
     }

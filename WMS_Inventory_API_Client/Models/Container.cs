@@ -10,7 +10,7 @@ namespace WMS_Inventory_API_Client.Models
         public virtual List<Content>? content { get; set; }
 
         
-        public Container(int? id, string? type, string? description, int? storageLocationId, StorageLocation? storageLocation, List<Content> contents)
+        public Container(int? id, string type, string description, int? storageLocationId, StorageLocation storageLocation, List<Content> contents)
         {
             Id = id;
             Type = type;
