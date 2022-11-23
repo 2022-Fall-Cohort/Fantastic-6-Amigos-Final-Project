@@ -13,7 +13,7 @@ namespace WMS_Inventory_API_Client.Controllers
 
         private static readonly HttpClient client = new HttpClient();
 
-        private string requestUri = "https://localhost:7153/api/content/";
+        private string requestUri = "https://localhost:7153/api/Contents/";
 
         public ContentsController(IContentService service)
         {
