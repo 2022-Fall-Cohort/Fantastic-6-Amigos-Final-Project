@@ -10,14 +10,17 @@ namespace WMS_Inventory_API_Client.Controllers
     public class ContentsController : Controller
     {
         private IContentService? _service;
+        private IContainerService? _serviceContainer;
+
 
         private static readonly HttpClient client = new HttpClient();
 
         private string requestUri = "https://localhost:7153/api/Contents/";
 
-        public ContentsController(IContentService service)
+        public ContentsController(IContentService service, IContainerService serviceContainer)
         {
             _service = service ?? throw new ArgumentNullException(nameof(service));
+            _serviceContainer = serviceContainer ?? throw new ArgumentNullException(nameof(serviceContainer));
 
             client.DefaultRequestHeaders.Accept.Clear();
 
@@ -27,7 +30,7 @@ namespace WMS_Inventory_API_Client.Controllers
             client.DefaultRequestHeaders.Add("User-Agent", "Jim's API");
         }
 
-        // Example: https://localhost:7153/api/content
+        // Example: https://localhost:7153/api/Contents
         public async Task<IActionResult> Index()
         {
             var response = await _service.FindAll();
@@ -48,15 +51,18 @@ namespace WMS_Inventory_API_Client.Controllers
         }
 
         // GET: Content/Create
-        public ActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var response = await _serviceContainer.FindAll();
+            ViewData["ContainerId"] = new SelectList(response, "Id", "Description");
             return View();
         }
 
         // POST: Content/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Quantity,Description,containerId")] Content content)
+        //public async Task<IActionResult> Create([Bind("Id,Quantity,Description,containerId")] Content content)
+        public async Task<IActionResult> Create(Content content)
         {
             content.Id = null;
             var resultPost = await client.PostAsync<Content>(requestUri, content, new JsonMediaTypeFormatter());
@@ -67,6 +73,9 @@ namespace WMS_Inventory_API_Client.Controllers
         // GET: Content/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
+            var response = await _serviceContainer.FindAll();
+            ViewData["ContainerId"] = new SelectList(response, "Id", "Description");
+
             var content = await _service.FindOne(id);
             if (content == null)
             {
@@ -79,7 +88,9 @@ namespace WMS_Inventory_API_Client.Controllers
         // POST: Content/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Quantity,Description,containerId")] Content content)
+        //public async Task<IActionResult> Edit(int id, [Bind("Id,Quantity,Description,containerId")] Content content)
+        public async Task<IActionResult> Edit(int id, Content content)
+
         {
             if (id != content.Id)
             {

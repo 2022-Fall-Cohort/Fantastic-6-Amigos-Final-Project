@@ -22,7 +22,7 @@ namespace WMS_Inventory_API_Client.Services
             var request = BasePath + id.ToString();
             var responseGet = await _client.GetAsync(request);
             var response = await responseGet.ReadContentAsync<Content>();
-            var content = new Content(response.Id, response.Quantity, response.Description, response.ContainerId);
+            var content = new Content(response.Id, response.Quantity, response.Description, response.ContainerId, response.Container);
             return content;
         }
     }

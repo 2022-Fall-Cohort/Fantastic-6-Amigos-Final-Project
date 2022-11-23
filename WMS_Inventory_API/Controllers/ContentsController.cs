@@ -25,14 +25,14 @@ namespace WMS_Inventory_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Content>>> GetContent()
         {
-            return await _context.Content.ToListAsync();
+            return await _context.Content.Include(c => c.Container).ToListAsync();
         }
 
         // GET: api/Contents/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Content>> GetContent(int id)
         {
-            var content = await _context.Content.FindAsync(id);
+            var content = await _context.Content.Include(c => c.Container).FirstOrDefaultAsync(i => i.Id == id);
 
             if (content == null)
             {

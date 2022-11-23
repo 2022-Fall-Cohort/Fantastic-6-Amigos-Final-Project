@@ -35,10 +35,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.content[0].Quantity)
+                Quantity
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.content[0].Description)
+                Description
             </th>
             <th></th>
         </tr>
@@ -53,6 +53,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a style="color: indianred" href='@Url.Action("Details/item.Id", "Contents")'>Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+
             </tr>
         }
     </tbody>

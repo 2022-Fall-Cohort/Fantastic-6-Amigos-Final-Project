@@ -14,7 +14,7 @@ namespace WMS_Inventory_API_Client.Models
         public double? Longitude { get; set; }
         public double? Latitude { get; set; }
         public int? AccountId { get; set; }
-        public virtual List<Container>? containers { get; set; }
+        public virtual List<Container>? container { get; set; }
 
 
          public StorageLocation (int? id, string? locationname, string? address1, string? address2, string? city, string? state, int? zipCode, double? longitude, double? latitude, int? accountid, List<Container> containerList)
@@ -29,8 +29,8 @@ namespace WMS_Inventory_API_Client.Models
             Longitude = longitude;
             Latitude = latitude;
             AccountId = accountid;
-            var tmp_containers = containerList ?? new List<Container>();
-            containers = tmp_containers;
+            var tmp_container = containerList ?? new List<Container>();
+            container = tmp_container;
 
         }
 
