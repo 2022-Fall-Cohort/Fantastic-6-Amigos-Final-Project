@@ -26,5 +26,20 @@ namespace WMS_Inventory_API_Client.Services
             var account = new Account(response.Id, response.Name, response.Address1, response.Address2, response.City, response.State, response.ZipCode, response.Email, response.Password);
             return account;
         }
+
+        public async Task<Account> FindEmail(string email)
+        {
+            Account? account = null;
+            var request = BasePath + "Email/" + email;
+            var responseGet = await _client.GetAsync(request);
+            if (responseGet.IsSuccessStatusCode)
+            {
+                var response = await responseGet.ReadContentAsync<Account>();
+                account = new Account(response.Id, response.Name, response.Address1, response.Address2, response.City, response.State, response.ZipCode, response.Email, response.Password);
+                return account;
+            }
+
+            return account;
+        }
     }
 }
