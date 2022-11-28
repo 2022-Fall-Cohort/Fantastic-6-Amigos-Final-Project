@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+Console.WriteLine("TEST");
+
 
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
