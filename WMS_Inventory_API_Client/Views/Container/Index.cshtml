@@ -4,12 +4,21 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Containers</h1>
+<h1 class="page-header">Containers</h1>
+
+
+<form action="/Containers/Create">
+    <div>
+        <button type="submit" class="btn btn-primary">Add Container</button>
+    </div>
+</form>
+
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
 <div id="no-more-tables">
+
 <table class="table">
     <thead>
         <tr>

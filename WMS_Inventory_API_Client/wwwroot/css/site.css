@@ -13,6 +13,10 @@ html {
 img {
     width: 20%;
 }
+.nav-img {
+    width: 5%;
+    align-items: center; 
+}
 .menu-header {
     width: 550px;
     margin: auto;
@@ -48,16 +52,37 @@ th, td {
     border: 2px solid black;
     width: fit-content;
 }
-h1 {
- font-size: 30px;
- font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+.page-header {
+    width: 550px;
+    margin: auto;
+    background-color: gray;
+    color: white;
+    display: inline block;
+    padding: 12px;
+    border: 3px double white;
+    border-bottom-left-radius: 40%;
+    border-top-right-radius: 40%;
+    font-size: 40px;
+    text-align: center;
 }
-
 .footer {
     position: fixed;
     background:white;
 }
+nav a:hover {
+    color: #0169ad;
+    font-weight: bold;
+}
+ul a:hover {
+    color: #0169ad;
+    font-weight: bold; 
+}
+ul a {
+    color:white;  
+}
+p a {color: white;
 
+}
 
 @media (min-width: 768px) {
   html {

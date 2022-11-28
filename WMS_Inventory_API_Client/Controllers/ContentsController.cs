@@ -82,6 +82,7 @@ namespace WMS_Inventory_API_Client.Controllers
                 return NotFound();
             }
 
+
             return View(content);
         }
 
@@ -92,13 +93,16 @@ namespace WMS_Inventory_API_Client.Controllers
         public async Task<IActionResult> Edit(int id, Content content)
 
         {
+            var containerId = content.ContainerId;
+
             if (id != content.Id)
             {
                 return NotFound();
             }
 
             var resultPut = await client.PutAsync<Content>(requestUri + content.Id.ToString(), content, new JsonMediaTypeFormatter());
-            return RedirectToAction(nameof(Index));
+            //return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "Container", new { id = containerId });
         }
 
         // GET: Content/Delete/5
