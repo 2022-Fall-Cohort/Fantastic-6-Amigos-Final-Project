@@ -54,14 +54,12 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-
                     @{
                         TempData["id"] = item.Id;
                     }
-
-                    <a style="color: indianred" href='@Url.Action("Details/" + TempData["id"], "Contents")'>Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a style="color: royalblue; cursor: pointer" onClick='location.href="/Contents/Edit/"+@TempData["id"]'><u>Edit</u></a> |
+                    <a style="color: royalblue; cursor: pointer" onClick='location.href="/Contents/Details/"+@TempData["id"]'><u>Details</u></a> |
+                    <a style="color: royalblue; cursor: pointer" onClick ='location.href="/Contents/Delete/"+@TempData["id"]'><u>Delete</u></a>
                 </td>
 
             </tr>
@@ -71,4 +69,6 @@
 
 <div>
     <a asp-action="Index">Back to List</a>
+    <!-- <a style="color: indianred; cursor: pointer" onClick='location.href="/Container/Details/"+@TempData["containerId"]'><u>Delete</u></a>-->
+
 </div>
