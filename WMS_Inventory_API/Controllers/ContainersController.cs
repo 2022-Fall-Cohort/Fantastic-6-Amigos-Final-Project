@@ -26,6 +26,7 @@ namespace WMS_Inventory_API.Controllers
         public async Task<ActionResult<IEnumerable<Container>>> GetContainer()
         {
             return await _context.Container.Include(s => s.StorageLocation).Include(c => c.Content).ToListAsync();
+            //return await _context.Container.Include(s => s.StorageLocation).Include(c => c.Content).Where(a => a.StorageLocation.AccountId == 2).ToListAsync();
         }
 
         // GET: api/Containers/5
