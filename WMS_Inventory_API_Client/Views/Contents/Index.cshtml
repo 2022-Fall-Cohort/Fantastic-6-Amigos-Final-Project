@@ -9,6 +9,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<div id="no-more-tables">
 <table class="table">
     <thead>
         <tr>
@@ -27,13 +28,13 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            <td data-title="Quantity">
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
-            <td>
+            <td data-title="Description">
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <td>
+            <td data-title="ContainerId">
                 @Html.DisplayFor(modelItem => item.ContainerId)
             </td>
             <td>
@@ -45,5 +46,6 @@
 }
     </tbody>
 </table>
+</div>
 <br />
 <br />
