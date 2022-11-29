@@ -19,6 +19,7 @@ namespace WMS_Inventory_API_Client.Controllers
 
         public ContentsController(IContentService service, IContainerService serviceContainer)
         {
+            TempData["Content"] = "Content";
             _service = service ?? throw new ArgumentNullException(nameof(service));
             _serviceContainer = serviceContainer ?? throw new ArgumentNullException(nameof(serviceContainer));
 

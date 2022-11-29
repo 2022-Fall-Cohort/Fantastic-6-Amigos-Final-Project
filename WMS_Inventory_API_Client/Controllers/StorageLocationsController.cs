@@ -16,6 +16,7 @@ namespace WMS_Inventory_API_Client.Controllers
 
         public StorageLocationController(IStorageLocationService service, IAccountService serviceAccount)
         {
+            TempData["StorageLocation"] = "StorageLocation";
             _service = service ?? throw new ArgumentNullException(nameof(service));
             _serviceAccount = serviceAccount ?? throw new ArgumentNullException(nameof(serviceAccount));
             client.DefaultRequestHeaders.Accept.Clear();

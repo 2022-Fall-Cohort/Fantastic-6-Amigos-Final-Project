@@ -22,11 +22,11 @@ namespace WMS_Inventory_API.Controllers
         }
 
         // GET: api/Containers
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Container>>> GetContainer()
+        [HttpGet("Account/{acct}")]
+        public async Task<ActionResult<IEnumerable<Container>>> Account(int acct)
         {
-            return await _context.Container.Include(s => s.StorageLocation).Include(c => c.Content).ToListAsync();
-            //return await _context.Container.Include(s => s.StorageLocation).Include(c => c.Content).Where(a => a.StorageLocation.AccountId == 2).ToListAsync();
+            //return await _context.Container.Include(s => s.StorageLocation).Include(c => c.Content).ToListAsync();
+            return await _context.Container.Include(s => s.StorageLocation).Include(c => c.Content).Where(a => a.StorageLocation.AccountId == acct).ToListAsync();
         }
 
         // GET: api/Containers/5

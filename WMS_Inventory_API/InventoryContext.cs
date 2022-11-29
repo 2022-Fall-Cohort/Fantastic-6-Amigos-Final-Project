@@ -25,12 +25,11 @@ namespace WMS_Inventory_API
         protected override void OnModelCreating(ModelBuilder model)
         {
             model.Entity<Account>().HasData(
-                new Account() { Id = 1, Name = "Charles Baker", Address1 = "5814 N 17th St", Address2 = "", City = "Tampa", State = "FL", ZipCode = 33610, Email = "charles.baker@gmail.com", Password = "password"});
+                    new Account() { Id = 1, Name = "Charles Baker", Address1 = "5814 N 17th St", Address2 = "", City = "Tampa", State = "FL", ZipCode = 33610, Email = "charles.baker@gmail.com", Password = "password"});
 
             model.Entity<StorageLocation>().HasData(
-                new StorageLocation() { Id = 1, LocationName = "Home Shop", Address1 = "5814 N 17th St", Address2 = "", City = "Tampa", State = "FL", ZipCode = 33610, Longitude = 27.995778, Latitude = -82.440322, AccountId = 1 },
-                new StorageLocation() { Id = 2, LocationName = "Extra Space Storage", Address1 = "1711 E Hillsborough Ave", Address2 = "", City = "Tampa", State = "FL", ZipCode = 33610, Longitude = 28.000687, Latitude = -82.441528, AccountId = 1 });
-
+                    new StorageLocation() { Id = 1, LocationName = "Home Shop", Address1 = "5814 N 17th St", Address2 = "", City = "Tampa", State = "FL", ZipCode = 33610, Longitude = 27.995778, Latitude = -82.440322, AccountId = 1 },
+                    new StorageLocation() { Id = 2, LocationName = "Extra Space Storage", Address1 = "1711 E Hillsborough Ave", Address2 = "", City = "Tampa", State = "FL", ZipCode = 33610, Longitude = 28.000687, Latitude = -82.441528, AccountId = 1 });
 
             model.Entity<Container>().HasData(
                 new Container() { Id = 1, Type = "Box", Description = "Brown corrugated box containing hand tools", StorageLocationId = 2 },

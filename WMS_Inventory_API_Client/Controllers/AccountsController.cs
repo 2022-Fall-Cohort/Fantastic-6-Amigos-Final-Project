@@ -14,6 +14,7 @@ namespace WMS_Inventory_API_Client.Controllers
         private string requestUri = "https://localhost:7153/api/Accounts/";
         public AccountsController(IAccountService service)
         {
+            TempData["Account"] = "Account";
             _service = service ?? throw new ArgumentNullException(nameof(service));
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
@@ -34,6 +35,8 @@ namespace WMS_Inventory_API_Client.Controllers
             {
                 return NotFound();
             }
+            TempData["acctId"] = account.Id;
+
             return View(account);
         }
         // GET: Account/Create

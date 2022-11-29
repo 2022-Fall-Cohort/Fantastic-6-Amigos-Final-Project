@@ -68,6 +68,8 @@ namespace WMS_Inventory_API_Client.Controllers
                 else
                 {
                     TempData["OK"] = true;
+                    TempData["acctId"] = account.Id;
+
                     return RedirectToAction(nameof(MainPage));
                 }
             }
