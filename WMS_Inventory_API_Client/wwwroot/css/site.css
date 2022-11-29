@@ -13,9 +13,11 @@ html {
 img {
     width: 20%;
 }
-.nav-img {
-    width: 5%;
-    align-items: center; 
+.nav-image {
+    width: 35px;
+    height: 40px;
+    align-content: flex-start;
+
 }
 .menu-header {
     width: 550px;
@@ -87,11 +89,36 @@ p a {color: white;
 @media (min-width: 768px) {
   html {
     font-size: 12px;
-    background-repeat: no-repeat;
   }
-  table {
-      width: 
-  }
+ body {
+     background-repeat: no-repeat;
+ }
+}
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+}
+
+/* Portrait */
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
+}
+
+/* Landscape */
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {
+}
+
+/* ----------- iPhone X ----------- */
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+}
+
+/* Portrait */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
+}
+
+/* Landscape */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {
 }
 
 
