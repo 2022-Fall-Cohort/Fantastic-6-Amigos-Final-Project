@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<body>
+    <div align="center" class="menu-header">
+        <img src="/css/WMS.logo.jpg" alt="WMS Logo" />
+        <h1>
+            <span>WMS Inventory Tracker</span>
+        </h1>
+
+    </div>
+    <br />
+    <div align="left" class="menu">
+        <div align="center">
+            <h1>
+                <span>Main Menu</span>
+            </h1>
+        </div>
+        <br />
+        <ul>
+            <li>
+                <a href='@Url.Action("Index", "Accounts")'>Account Information</a>
+            </li>
+            <li>
+                <a href='@Url.Action("Index", "StorageLocation")'>Storage Locations</a>
+            </li>
+            <li>
+                <a href='@Url.Action("Index", "Container")'>Containers</a>
+            </li>
+            <li>
+                <a href='@Url.Action("Index", "Contents")'>Content</a>
+            </li> 
+            @*<li>
+                <a style="color: indianred" href='@Url.Action("Create", "StorageLocation")'>Add</a> a new Storage Location
+            </li>*@
+            @*<li>
+                <a style="color: indianred" href='@Url.Action("Create", "Container")'>Add</a> a new Container
+            </li>
+            <li>
+                <a style="color: indianred" href='@Url.Action("Create", "Contents")'>Add</a> new Content
+            </li>*@
+        </ul>
+        <br />
+        <br />
+        <br />
+    </div>
+
+</body>

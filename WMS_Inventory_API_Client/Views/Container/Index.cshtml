@@ -4,11 +4,21 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Containers</h1>
+<h1 class="page-header">Containers</h1>
+
+
+<form action="/Containers/Create">
+    <div>
+        <button type="submit" class="btn btn-primary">Add Container</button>
+    </div>
+</form>
+
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<div id="no-more-tables">
+
 <table class="table">
     <thead>
         <tr>
@@ -30,16 +40,16 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            <td data-title="Location Name">
                 @Html.DisplayFor(modelItem => item.StorageLocation.LocationName)
             </td>
-            <td>
+            <td data-title="Location Id">
                 @Html.DisplayFor(modelItem => item.StorageLocation.Id)
             </td>
-            <td>
+            <td data-title="Type">
                 @Html.DisplayFor(modelItem => item.Type)
             </td>
-            <td>
+            <td data-title="Description">
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
@@ -51,3 +61,6 @@
 }
     </tbody>
 </table>
+</div>
+<br />
+<br />

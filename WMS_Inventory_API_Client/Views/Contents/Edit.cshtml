@@ -4,7 +4,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1 class="page-header">Edit Contents</h1>
 
 <h4>Content</h4>
 <hr />
@@ -28,7 +28,9 @@
                 <select asp-for="ContainerId" class="form-control" asp-items="ViewBag.ContainerId"></select>
                 <span asp-validation-for="ContainerId" class="text-danger"></span>
             </div>
-
+            @{
+                TempData["containerid"] = Html.DisplayFor(model => model.Container.Id);
+            }
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
@@ -37,8 +39,12 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Back to List</a> |
+    <a style="color: royalblue; cursor: pointer" onClick='location.href="/Container/Details/"+@TempData["containerId"]'><u>Back to Container</u></a>
 </div>
+<br />
+<br />
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

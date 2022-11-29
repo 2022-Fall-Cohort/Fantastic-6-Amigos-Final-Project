@@ -1,14 +1,16 @@
-﻿@model IEnumerable<WMS_Inventory_API_Client.Models.Content>
+@model IEnumerable<WMS_Inventory_API_Client.Models.Content>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 class="page-header">Contents</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<div id="no-more-tables">
 <table class="table">
     <thead>
         <tr>
@@ -27,21 +29,26 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            <td data-title="Quantity">
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
-            <td>
+            <td data-title="Description">
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <td>
+            <td data-title="ContainerId">
                 @Html.DisplayFor(modelItem => item.ContainerId)
             </td>
+            @{
+                    TempData["containerid"] = Html.DisplayFor(modelItem => item.ContainerId);
+            }
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a style="color: royalblue; cursor: pointer" onClick='location.href="/Container/Details/"+@TempData["containerId"]'><u>Back to Container</u></a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+</div>
+<br />
+<br />
+

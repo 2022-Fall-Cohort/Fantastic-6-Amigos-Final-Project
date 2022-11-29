@@ -42,6 +42,20 @@ namespace WMS_Inventory_API.Controllers
             return account;
         }
 
+        // GET: api/Accounts/Email/{email}
+        [HttpGet("Email/{email}")]
+        public async Task<ActionResult<Account>> GetAccountByEmail(string email)
+        {
+            var account = await _context.Account.Include(c => c.StorageLocation).SingleOrDefaultAsync(i => i.Email == email);
+
+            if (account == null)
+            {
+                return NotFound();
+            }
+
+            return account;
+        }
+
         // PUT: api/Accounts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

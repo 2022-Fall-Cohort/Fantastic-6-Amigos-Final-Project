@@ -4,7 +4,7 @@
 
 namespace WMS_Inventory_API.Migrations
 {
-    public partial class Initial : Migration
+    public partial class NewMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

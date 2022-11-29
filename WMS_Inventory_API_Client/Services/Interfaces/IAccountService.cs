@@ -5,5 +5,6 @@ namespace WMS_Inventory_API_Client.Services.Interfaces
     {
         Task<IEnumerable<Account>> FindAll();
         Task<Account> FindOne(int id);
+        Task<Account> FindEmail(string email);
     }
 }

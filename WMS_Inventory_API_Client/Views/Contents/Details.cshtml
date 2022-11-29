@@ -4,7 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1 class="page-header">Content Details</h1>
 
 <div>
     <h4>Content</h4>
@@ -28,9 +28,16 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Container.Description)
         </dd>
+        @{
+            TempData["containerid"] = Html.DisplayFor(model => model.Container.Id);
+        }
     </dl>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Back to List</a> |
+    <a style="color: royalblue; cursor: pointer" onClick='location.href="/Container/Details/"+@TempData["containerId"]'><u>Back to Container</u></a>
 </div>
+<br />
+<br />
+
