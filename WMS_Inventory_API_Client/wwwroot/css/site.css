@@ -44,11 +44,19 @@ img {
     font-size: 30px;
     text-align: left;
 }
+
+.search {
+    margin: auto;
+    color: white;
+    width: 33%;
+}
+
 .table {
     background-color: white;
     border: 3px double black;
     width: 80%;
     margin: 10%;
+    margin-top: 5%
 }
 th, td {
     border: 2px solid black;
