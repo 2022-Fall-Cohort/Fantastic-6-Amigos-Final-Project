@@ -37,7 +37,6 @@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-
     </div>
 
     <footer id="footer" class="border-top footer text-muted">
@@ -50,17 +49,20 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
     <script>
+        var CreateAccount = document.getElementById("CreateAccount");
         var Login = document.getElementById("Login");
         var LoggedIn = document.getElementById("LoggedIn");
         var Logo = document.getElementById("logo");
-        if (Login.length > 0) {
-            LoggedIn.style.visibility = 'hidden';
-            Logo.style.visibility = 'hidden';
-        }
-        else {
+        if ((Login = false) || (CreateAccount = false)){
             LoggedIn.style.visibility = 'visible';
             Logo.style.visibility = 'visible';
-        }
+	    }
+        else {
+            LoggedIn.style.visibility = 'hidden';
+            Logo.style.visibility = 'hidden';
+	    }
+        
+
     </script>
 </body>
 </html>
