@@ -74,6 +74,7 @@
     </dl>
 </div>*@
 <br/>
+<div id="no-more-tables">
 <table class="table">
     <caption>
         Container Contents
@@ -93,10 +94,10 @@
         @foreach (var item in Model.content)
         {
             <tr>
-                <td>
+                <td data-title="Quantity">
                     @Html.DisplayFor(modelItem => item.Quantity)
                 </td>
-                <td>
+                <td data-title="Description">
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
@@ -112,6 +113,7 @@
         }
     </tbody>
 </table>
+</div>
 
 <div>
 
