@@ -59,9 +59,16 @@ img {
     margin: 10%;
     margin-top: 5%
 }
+
 th, td {
     border: 2px solid black;
     width: fit-content;
+}
+caption{
+    caption-side: top;
+    text-align: start;
+    font-size: 15px;
+    color: white;
 }
 .page-header {
     width: 550px;
@@ -91,8 +98,8 @@ ul a:hover {
 ul a {
     color:white;  
 }
-p a {color: white;
-
+p a {
+    color: white;
 }
 
 
