@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" id="navBar">
         
             <div class="container-fluid">
                 <div>
@@ -53,13 +53,12 @@
         var Login = document.getElementById("Login");
         var LoggedIn = document.getElementById("LoggedIn");
         var Logo = document.getElementById("logo");
-        if ((Login = false) || (CreateAccount = false)){
-            LoggedIn.style.visibility = 'visible';
-            Logo.style.visibility = 'visible';
+        var NavBar = document.getElementById("navBar")
+        if ((Login == null)&&(CreateAccount == null)){
+            NavBar.style.visibility = 'visible';
 	    }
         else {
-            LoggedIn.style.visibility = 'hidden';
-            Logo.style.visibility = 'hidden';
+            NavBar.style.visibility = 'hidden';
 	    }
         
 
