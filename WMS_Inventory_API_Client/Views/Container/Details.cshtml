@@ -6,7 +6,50 @@
 
 <h1 class="page-header">Containter Details</h1>
 
-<div>
+<table class="table">
+    <caption>
+        Container
+    </caption>
+    <thead>
+        <tr>
+            <th>
+                Location Name
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Description
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+           
+            <td>
+                @Html.DisplayFor(model => model.StorageLocation.LocationName)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(model => model.Type)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(model => model.Description)
+            </td>
+            
+        </tr>
+        
+
+            
+        }
+    </tbody>
+</table>
+
+
+
+@*<div>
     <h4>Container</h4>
     <hr />
     <dl class="row">
@@ -29,9 +72,12 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
     </dl>
-</div>
+</div>*@
 <br/>
 <table class="table">
+    <caption>
+        Container Contents
+    </caption>
     <thead>
         <tr>
             <th>
