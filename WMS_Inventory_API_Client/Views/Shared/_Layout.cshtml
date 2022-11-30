@@ -14,9 +14,9 @@
         
             <div class="container-fluid">
                 <div>
-                    <img src="/css/WMS.logo.jpg" alt="WMS Logo" class="nav-image">
+                    <img src="/css/WMS.logo.jpg" alt="WMS Logo" class="nav-image" id="logo">
                 </div>
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WMS_Inventory_API_Client</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Where's My Stuff?</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -52,11 +52,14 @@
     <script>
         var Login = document.getElementById("Login");
         var LoggedIn = document.getElementById("LoggedIn");
+        var Logo = document.getElementById("logo");
         if (Login.length > 0) {
             LoggedIn.style.visibility = 'hidden';
+            Logo.style.visibility = 'hidden';
         }
         else {
             LoggedIn.style.visibility = 'visible';
+            Logo.style.visibility = 'visible';
         }
     </script>
 </body>

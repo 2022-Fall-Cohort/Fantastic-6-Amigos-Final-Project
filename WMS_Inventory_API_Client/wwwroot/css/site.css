@@ -45,15 +45,29 @@ img {
     font-size: 30px;
     text-align: left;
 }
+
+.search {
+    margin: auto;
+    color: white;
+    width: 33%;
+}
+
 .table {
     background-color: white;
     border: 3px double black;
     width: 80%;
-    margin: 10%;
+    margin: 3%;
 }
+
 th, td {
     border: 2px solid black;
     width: fit-content;
+}
+caption{
+    caption-side: top;
+    text-align: start;
+    font-size: 15px;
+    color: white;
 }
 .page-header {
     width: 550px;
@@ -83,8 +97,8 @@ ul a:hover {
 ul a {
     color:white;  
 }
-p a {color: white;
-
+p a {
+    color: white;
 }
 
 
