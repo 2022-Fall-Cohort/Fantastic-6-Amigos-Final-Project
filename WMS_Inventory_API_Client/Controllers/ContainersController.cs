@@ -1,5 +1,4 @@
-﻿using IronBarCode;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel;
 using System.Net.Http.Formatting;
@@ -10,7 +9,6 @@ using WMS_Inventory_API_Client.Services.Interfaces;
 using Spire.Pdf;
 using WMS_Inventory_API_Client.Models;
 using System.Security.Cryptography.X509Certificates;
-using System.Drawing;
 
 
 namespace WebMVC_API_Client.Controllers
@@ -67,25 +65,6 @@ namespace WebMVC_API_Client.Controllers
             {
                 return NotFound();
             }
-            // Barcode 
-
-
-            //{
-            //    GeneratedBarcode barcode = IronBarCode.BarcodeWriter.CreateBarcode("Container.Id", BarcodeEncoding.AllOneDimensional);
-            //    barcode.SaveAsPng("barcode.png");
-            //}
-
-            // Creating a barcode:
-            var containerId = container.Id.ToString();
-            GeneratedBarcode barcode = IronBarCode.BarcodeWriter.CreateBarcode(containerId, BarcodeWriterEncoding.EAN8);
-
-            // Save barcode as in image:
-            barcode.SaveAsPng("/wwwroot/barcode.png");
-
-            Image BarcodeImage = barcode.Image; // Can be used as Image
-
-            // Reading a barcode with IronBarcode:
-            var resultFromFile = BarcodeReader.Read(@"wwwroot/barcode.png"); // From a file
             return View(container);
         }
 

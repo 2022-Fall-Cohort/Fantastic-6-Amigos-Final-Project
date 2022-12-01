@@ -12,7 +12,7 @@ using WMS_Inventory_API;
 namespace WMS_Inventory_API.Migrations
 {
     [DbContext(typeof(InventoryContext))]
-    [Migration("20221130210204_First")]
+    [Migration("20221201161313_First")]
     partial class First
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -102,14 +102,14 @@ namespace WMS_Inventory_API.Migrations
                         new
                         {
                             Id = 1,
-                            Description = "Brown corrugated box containing hand tools",
+                            Description = "Brown corrugated box containing metal fasteners",
                             StorageLocationId = 2,
                             Type = "Box"
                         },
                         new
                         {
                             Id = 2,
-                            Description = "Clear plastic w/ blue lid - metal fasteners",
+                            Description = "Clear plastic w/ blue lid - clothes",
                             StorageLocationId = 2,
                             Type = "Tote"
                         },
@@ -146,9 +146,14 @@ namespace WMS_Inventory_API.Migrations
                     b.Property<int?>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<int?>("StorageLocationId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ContainerId");
+
+                    b.HasIndex("StorageLocationId");
 
                     b.ToTable("Content");
 
@@ -345,7 +350,13 @@ namespace WMS_Inventory_API.Migrations
                         .WithMany("Content")
                         .HasForeignKey("ContainerId");
 
+                    b.HasOne("WMS_Inventory_API.Models.StorageLocation", "StorageLocation")
+                        .WithMany()
+                        .HasForeignKey("StorageLocationId");
+
                     b.Navigation("Container");
+
+                    b.Navigation("StorageLocation");
                 });
 
             modelBuilder.Entity("WMS_Inventory_API.Models.StorageLocation", b =>
