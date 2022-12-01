@@ -39,11 +39,11 @@
         </main>
     </div>
 
-    <footer id="footer" class="border-top footer text-muted">
+   @* <footer id="footer" class="border-top footer text-muted">
         <div class="container">
             &copy; 2022 - WMS_Inventory_API_Client - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer> *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
@@ -52,14 +52,14 @@
         var CreateAccount = document.getElementById("CreateAccount");
         var Login = document.getElementById("Login");
         var NavBar = document.getElementById("navBar")
-        var Footer = document.getElementById("footer");
+     @*   var Footer = document.getElementById("footer"); *@
         if ((Login == null)&&(CreateAccount == null)){
             NavBar.style.visibility = 'visible';
-            Footer.style.visibility = 'visible';
+          @*  Footer.style.visibility = 'visible'; *@
 	    }
         else {
             NavBar.style.visibility = 'hidden';
-            Footer.style.visibility = 'hidden';
+         @*   Footer.style.visibility = 'hidden'; *@
 	    }
         
 
