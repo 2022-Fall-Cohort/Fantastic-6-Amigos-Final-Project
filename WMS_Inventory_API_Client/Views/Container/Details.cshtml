@@ -4,8 +4,9 @@
     ViewData["Title"] = "Details";
 }
 
-<h1 class="page-header">Containter Details</h1>
+<h1 class="page-header">Container Details</h1>
 
+<div id="no-more-tables">
 <table class="table">
     <caption>
         Container
@@ -26,22 +27,23 @@
     </thead>
     <tbody>
         <tr>
-           
-            <td>
+
+            <td data-title ="Location Name">
                 @Html.DisplayFor(model => model.StorageLocation.LocationName)
             </td>
-           
-            <td>
+
+            <td data-title="Type">
                 @Html.DisplayFor(model => model.Type)
             </td>
-           
-            <td>
+
+            <td data-title="Description">
                 @Html.DisplayFor(model => model.Description)
             </td>
             
         </tr>
     </tbody>
 </table>
+</div>
 
 
 
@@ -110,12 +112,14 @@
     </tbody>
 </table>
 </div>
+<br />
+<br />
 
 <div>
 
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" style="color:white">Back to List</a>
 
-  <a style="color: indianred; cursor: pointer" onClick='location.href="/Container/Details/"+@TempData["containerId"]'><u>Delete</u></a>
+  <a style="color: white; cursor: pointer" onClick='location.href="/Container/Details/"+@TempData["containerId"]'><u>Delete</u></a>
 
 </div>
 

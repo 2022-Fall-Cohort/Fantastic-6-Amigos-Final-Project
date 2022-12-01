@@ -7,6 +7,7 @@
 <h1 class="page-header">Account Details</h1>
 
 
+<div id="no-more-tables">
 <table class="table">
     <caption>
         Account
@@ -41,38 +42,39 @@
   <tbody>
         <tr>
 
-            <td>
+            <td data-title ="Name">
                 @Html.DisplayFor(model => model.Name)
             </td>
 
-            <td>
+            <td data-title="Email">
                 @Html.DisplayFor(model => model.Email)
             </td>
 
 
-            <td>
+            <td data-title="Address1">
                 @Html.DisplayFor(model => model.Address1)
             </td>
 
-            <td>
+            <td data-title="Address2">
                 @Html.DisplayFor(model => model.Address2)
             </td>
 
-            <td>
+            <td data-title="City">
                 @Html.DisplayFor(model => model.City)
             </td>
 
-            <td>
+            <td data-title="State">
                 @Html.DisplayFor(model => model.State)
             </td>
 
-            <td>
+            <td data-title="ZipCode">
                 @Html.DisplayFor(model => model.ZipCode)
             </td>
 
         </tr>
     </tbody>
 </table>
+</div>
 
 
 @*<div>
@@ -109,10 +111,11 @@
             @Html.DisplayFor(model => model.ZipCode)
         </td>
     </tr>
-</div>
-<div>*@
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+</div>*@
+<div>
+
+    <a asp-action="Edit" asp-route-id="@Model?.Id" style="color:white">Edit</a> |
+    <a asp-action="Index" style="color:white">Back to List</a>
 </div>
 <br />
 <br />
