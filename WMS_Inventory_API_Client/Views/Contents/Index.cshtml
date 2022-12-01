@@ -1,22 +1,40 @@
-﻿@model IEnumerable<WMS_Inventory_API_Client.Models.Content>
+@model IEnumerable<WMS_Inventory_API_Client.Models.Content>
 
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1 class="page-header">Contents</h1>
+<br />
+<div class="search">
+<form asp-action="Index" method="get">
+    <div class="form-group">
+        <label for="SearchString">Search Contents:</label>
+        <input type="text" class="form-control" name="SearchString" 
+	       value="@ViewData["CurrentFilter"]"/>
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </div>
+</form>
+<br />
+<form asp-action="Index">
+    <input type="submit" value="Back to full list" class="btn btn-primary" />
+</form>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<hr />
+
+<div id="no-more-tables">
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Quantity)
+                @* @Html.DisplayNameFor(model => model.Quantity) *@
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["QuantitySortParam"]"> @Html.DisplayNameFor(model => model.Quantity) </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @*  @Html.DisplayNameFor(model => model.Description) *@
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DescriptionSortParam"]"> @Html.DisplayNameFor(model => model.Description) </a>
+
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ContainerId)
@@ -27,13 +45,13 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            <td data-title="Quantity">
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
-            <td>
+            <td data-title="Description">
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <td>
+            <td data-title="ContainerId">
                 @Html.DisplayFor(modelItem => item.ContainerId)
             </td>
             @{
@@ -46,5 +64,7 @@
 }
     </tbody>
 </table>
+</div>
 <br />
 <br />
+

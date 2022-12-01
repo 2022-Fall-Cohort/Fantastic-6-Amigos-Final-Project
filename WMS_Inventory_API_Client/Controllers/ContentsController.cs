@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
+using WMS_Inventory_API_Client.Data;
 using WMS_Inventory_API_Client.Models;
 using WMS_Inventory_API_Client.Services.Interfaces;
 
@@ -31,11 +32,38 @@ namespace WMS_Inventory_API_Client.Controllers
         }
 
         // Example: https://localhost:7153/api/Contents
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(
+	    string SearchString, string sortOrder)
         {
-            var response = await _service.FindAll();
+              var response = await _service.FindAll();
+            // return View(response)
+            ViewData["QuantitySortParam"] = sortOrder == "Quantity" ? "quantity_desc" : "Quantity";
+            ViewData["DescriptionSortParam"] = sortOrder == "Description" ? "description_desc" : "Description";
+            ViewData["CurrentFilter"] = SearchString;
 
-            return View(response);
+
+            var content = from c in response
+                         select c;
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                content = content.Where(c => c.Description.Contains(SearchString, StringComparison.OrdinalIgnoreCase));
+            }
+            switch (sortOrder)
+            {
+                case "quantity_desc":
+                    content = content.OrderByDescending(c => c.Quantity);
+                    break;
+                case "description_desc":
+                    content = content.OrderByDescending(c => c.Description);
+                    break;
+                case "Description":
+                    content = content.OrderBy(c => c.Description);
+                    break;
+                default:
+                    content = content.OrderBy(c => c.Quantity);
+                    break;
+            }
+            return View(content);
         }
 
         // GET: Content/Details/5

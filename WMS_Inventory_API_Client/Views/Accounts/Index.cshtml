@@ -6,10 +6,9 @@
 
 <h1 class="page-header">Account Information</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<div id="no-more-tables">
+    <table class="table">
+
     <thead>
         <tr>
             <th>
@@ -36,22 +35,22 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            <td data-title="Name">
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
+            <td data-title="Address1">
                 @Html.DisplayFor(modelItem => item.Address1)
             </td>
-            <td>
+            <td data-title ="Address2">
                 @Html.DisplayFor(modelItem => item.Address2)
             </td>
-            <td>
+            <td data-title="City">
                 @Html.DisplayFor(modelItem => item.City)
             </td>
-            <td>
+            <td data-title="State">
                 @Html.DisplayFor(modelItem => item.State)
             </td>
-            <td>
+            <td data-title="ZipCode">
                 @Html.DisplayFor(modelItem => item.ZipCode)
             </td>
             <td>
@@ -63,6 +62,7 @@
 }
     </tbody>
 </table>
+</div>
 <br />
 <br />
 
