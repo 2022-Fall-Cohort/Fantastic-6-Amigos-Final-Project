@@ -1,7 +1,8 @@
 ﻿using WMS_Inventory_API_Client.Services;
 using WMS_Inventory_API_Client.Services.Interfaces;
-namespace WMS_Inventory_API_Client
-{
+namespace WMS_Inventory_API_Client;
+
+
     public class Program
     {
         public static ServiceDescriptor? account { get; private set; }
@@ -51,4 +52,3 @@ namespace WMS_Inventory_API_Client
             app.Run();
         }
     }
-}

@@ -1,9 +1,32 @@
 using WMS_Inventory_API;
 using System.Text.Json.Serialization;
-
-
+using IronBarCode;
+using System.Drawing;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+// Barcode 
+
+// Creating a barcode:
+//GeneratedBarcode barcode = IronBarCode.BarcodeWriter.CreateBarcode("Container.Id", BarcodeWritingEncoding.All);
+
+// Save barcode as in image:
+//barcode.SaveAsPng("barcode.png");
+
+//Image BarcodeImage = barcode.Image; // Can be used as Image
+
+// Reading a barcode with IronBarcode:
+// var resultFromFile = BarcodeReader.Read(@"file/barcode.png"); // From a file
+
+//class Barcode
+//{
+//    static void Main (string[] args)
+//    {
+//        GeneratedBarcode barcode = IronBarCode.BarcodeWriter.CreateBarcode("Container.Id", BarcodeEncoding.AllOneDimensional);
+//        barcode.SaveAsPng("barcode.png");
+//    }
+//}
 
 
 // Add services to the container.
