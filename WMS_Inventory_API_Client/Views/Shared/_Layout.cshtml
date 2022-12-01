@@ -51,14 +51,15 @@
     <script>
         var CreateAccount = document.getElementById("CreateAccount");
         var Login = document.getElementById("Login");
-        var LoggedIn = document.getElementById("LoggedIn");
-        var Logo = document.getElementById("logo");
         var NavBar = document.getElementById("navBar")
+        var Footer = document.getElementById("footer");
         if ((Login == null)&&(CreateAccount == null)){
             NavBar.style.visibility = 'visible';
+            Footer.style.visibility = 'visible';
 	    }
         else {
             NavBar.style.visibility = 'hidden';
+            Footer.style.visibility = 'hidden';
 	    }
         
 
