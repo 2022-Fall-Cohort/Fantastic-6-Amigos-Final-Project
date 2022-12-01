@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis.Host.Mef;
+using System.ComponentModel;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using WMS_Inventory_API_Client.Models;
@@ -29,6 +30,14 @@ namespace WMS_Inventory_API_Client.Controllers
             var response = await _service.FindAll();
             return View(response);
         }
+
+        public async Task<IActionResult> Account(int id)
+        {
+            var response = await _service.Account(id);
+
+            return View(response);
+        }
+
         // GET: StorageLocation/Details/5
         public async Task<IActionResult> Details(int id)
         {
@@ -63,6 +72,7 @@ namespace WMS_Inventory_API_Client.Controllers
             {
                 return NotFound();
             }
+
             return View(storageLocation);
         }
         // POST: StorageLocation/Edit/5
@@ -75,7 +85,7 @@ namespace WMS_Inventory_API_Client.Controllers
                 return NotFound();
             }
             var resultPut = await client.PutAsync<StorageLocation>(requestUri + storageLocation.Id.ToString(), storageLocation, new JsonMediaTypeFormatter());
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Account", "StorageLocation", new { id = storageLocation.AccountId });
         }
         // GET: StorageLocation/Delete/5
         public async Task<IActionResult> Delete(int id)

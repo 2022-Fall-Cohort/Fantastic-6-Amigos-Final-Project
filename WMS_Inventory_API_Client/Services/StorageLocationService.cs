@@ -23,6 +23,14 @@ namespace WMS_Inventory_API_Client.Services
             return response;
         }
 
+        public async Task<IEnumerable<StorageLocation>> Account(int id)
+        {
+            var request = BasePath + "Account/" + id.ToString();
+            var responseGet = await _client.GetAsync(request);
+            var response = await responseGet.ReadContentAsync<List<StorageLocation>>();
+            return response;
+        }
+
         public async Task<StorageLocation> FindOne(int id)
         {
             var request = BasePath + id.ToString();
