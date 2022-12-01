@@ -32,8 +32,8 @@ namespace WMS_Inventory_API
                     new StorageLocation() { Id = 2, LocationName = "Extra Space Storage", Address1 = "1711 E Hillsborough Ave", Address2 = "", City = "Tampa", State = "FL", ZipCode = 33610, Longitude = 28.000687, Latitude = -82.441528, AccountId = 1 });
 
             model.Entity<Container>().HasData(
-                new Container() { Id = 1, Type = "Box", Description = "Brown corrugated box containing hand tools", StorageLocationId = 2 },
-                new Container() { Id = 2, Type = "Tote", Description = "Clear plastic w/ blue lid - metal fasteners", StorageLocationId = 2 },
+                new Container() { Id = 1, Type = "Box", Description = "Brown corrugated box containing metal fasteners", StorageLocationId = 2 },
+                new Container() { Id = 2, Type = "Tote", Description = "Clear plastic w/ blue lid - clothes", StorageLocationId = 2 },
                 new Container() { Id = 3, Type = "Chest", Description = "Blue painted wooden chest - fishing tackle", StorageLocationId = 1 },
                 new Container() { Id = 4, Type = "Cabinet", Description = "Far left cabinet under built in work bench", StorageLocationId = 1 });
 

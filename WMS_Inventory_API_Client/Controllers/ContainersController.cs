@@ -4,8 +4,11 @@ using System.ComponentModel;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Security.Principal;
-using WMS_Inventory_API_Client.Models;
+using Container = WMS_Inventory_API_Client.Models.Container;
 using WMS_Inventory_API_Client.Services.Interfaces;
+using Spire.Pdf;
+using WMS_Inventory_API_Client.Models;
+using System.Security.Cryptography.X509Certificates;
 
 namespace WebMVC_API_Client.Controllers
 {
@@ -45,6 +48,10 @@ namespace WebMVC_API_Client.Controllers
         {
             var response = await _service.Account(id);
 
+            //PdfDocument doc = new PdfDocument();
+            //doc.LoadFromFile(@"C:/Users/willi/source/LoremIpsum.pdf");
+            //doc.Print();
+
             return View(response);
         }
 
@@ -56,8 +63,6 @@ namespace WebMVC_API_Client.Controllers
             {
                 return NotFound();
             }
-            TempData["acctId"] = container.StorageLocation.AccountId;
-
 
             return View(container);
         }
@@ -85,15 +90,15 @@ namespace WebMVC_API_Client.Controllers
         // GET: Container/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            var response = await _serviceStorageLocation.FindAll();
-            ViewData["StorageLocationId"] = new SelectList(response, "Id", "LocationName");
-
             var container = await _service.FindOne(id);
             if (container == null)
             {
                 return NotFound();
             }
-            TempData["acctId"] = container.StorageLocation.AccountId;
+
+            int acctId = (int)container.StorageLocation.AccountId;
+            var response = await _serviceStorageLocation.Account(acctId);
+            ViewData["StorageLocationId"] = new SelectList(response, "Id", "LocationName");
 
             return View(container);
         }
@@ -110,7 +115,7 @@ namespace WebMVC_API_Client.Controllers
             }
 
             var resultPut = await client.PutAsync<Container>(requestUri + container.Id.ToString(), container, new JsonMediaTypeFormatter());
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "Container", new { id = container.Id });
         }
 
         // GET: Container/Delete/5
@@ -122,7 +127,6 @@ namespace WebMVC_API_Client.Controllers
             {
                 return NotFound();
             }
-            TempData["acctId"] = container.StorageLocation.AccountId;
 
             return View(container);
         }

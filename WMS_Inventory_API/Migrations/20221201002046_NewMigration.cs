@@ -4,7 +4,7 @@
 
 namespace WMS_Inventory_API.Migrations
 {
-    public partial class initial : Migration
+    public partial class NewMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -82,7 +82,8 @@ namespace WMS_Inventory_API.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Quantity = table.Column<int>(type: "int", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ContainerId = table.Column<int>(type: "int", nullable: true)
+                    ContainerId = table.Column<int>(type: "int", nullable: true),
+                    StorageLocationId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -91,6 +92,11 @@ namespace WMS_Inventory_API.Migrations
                         name: "FK_Content_Container_ContainerId",
                         column: x => x.ContainerId,
                         principalTable: "Container",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Content_StorageLocation_StorageLocationId",
+                        column: x => x.StorageLocationId,
+                        principalTable: "StorageLocation",
                         principalColumn: "Id");
                 });
 
@@ -114,32 +120,32 @@ namespace WMS_Inventory_API.Migrations
                 columns: new[] { "Id", "Description", "StorageLocationId", "Type" },
                 values: new object[,]
                 {
-                    { 1, "Brown corrugated box containing hand tools", 2, "Box" },
-                    { 2, "Clear plastic w/ blue lid - metal fasteners", 2, "Tote" },
+                    { 1, "Brown corrugated box containing metal fasteners", 2, "Box" },
+                    { 2, "Clear plastic w/ blue lid - clothes", 2, "Tote" },
                     { 3, "Blue painted wooden chest - fishing tackle", 1, "Chest" },
                     { 4, "Far left cabinet under built in work bench", 1, "Cabinet" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Content",
-                columns: new[] { "Id", "ContainerId", "Description", "Quantity" },
+                columns: new[] { "Id", "ContainerId", "Description", "Quantity", "StorageLocationId" },
                 values: new object[,]
                 {
-                    { 1, 1, "5 lbs box 2 inch cut nails", 1 },
-                    { 2, 1, "1 lbs box 2 1/2 in cut nails", 3 },
-                    { 3, 1, "Misc boxes of cut nails - finish, box, brad", 6 },
-                    { 4, 1, "Misc boxes wood screws, brass/bronze, #8/9, 3/4 in - 1 1/2 in", 4 },
-                    { 5, 2, "Mom's winter clothes - slacks, tops, sweaters", 25 },
-                    { 6, 3, "Box of fly reels - Berkley, Ross, Pflueger", 1 },
-                    { 7, 3, "Leonard 37H flyrod", 1 },
-                    { 8, 3, "Orvis Fullflex fly/spin rod", 1 },
-                    { 9, 3, "Box of spinning reels - Shakespeare, Micron, Mitchell", 1 },
-                    { 10, 4, "Makita 7 1/4 in track saw", 1 },
-                    { 11, 4, "Parallel guides for Makita track", 1 },
-                    { 12, 4, "Makita 10 in circular saw", 1 },
-                    { 13, 4, "Skilsaw 5 1/2 in circular saw", 1 },
-                    { 14, 4, "Ryobi One+ tools - 1/2 in drill, finish sander, brad nailer", 3 },
-                    { 15, 4, "Milwaukee 7 1/4 in circular saw", 1 }
+                    { 1, 1, "5 lbs box 2 inch cut nails", 1, null },
+                    { 2, 1, "1 lbs box 2 1/2 in cut nails", 3, null },
+                    { 3, 1, "Misc boxes of cut nails - finish, box, brad", 6, null },
+                    { 4, 1, "Misc boxes wood screws, brass/bronze, #8/9, 3/4 in - 1 1/2 in", 4, null },
+                    { 5, 2, "Mom's winter clothes - slacks, tops, sweaters", 25, null },
+                    { 6, 3, "Box of fly reels - Berkley, Ross, Pflueger", 1, null },
+                    { 7, 3, "Leonard 37H flyrod", 1, null },
+                    { 8, 3, "Orvis Fullflex fly/spin rod", 1, null },
+                    { 9, 3, "Box of spinning reels - Shakespeare, Micron, Mitchell", 1, null },
+                    { 10, 4, "Makita 7 1/4 in track saw", 1, null },
+                    { 11, 4, "Parallel guides for Makita track", 1, null },
+                    { 12, 4, "Makita 10 in circular saw", 1, null },
+                    { 13, 4, "Skilsaw 5 1/2 in circular saw", 1, null },
+                    { 14, 4, "Ryobi One+ tools - 1/2 in drill, finish sander, brad nailer", 3, null },
+                    { 15, 4, "Milwaukee 7 1/4 in circular saw", 1, null }
                 });
 
             migrationBuilder.CreateIndex(
@@ -151,6 +157,11 @@ namespace WMS_Inventory_API.Migrations
                 name: "IX_Content_ContainerId",
                 table: "Content",
                 column: "ContainerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Content_StorageLocationId",
+                table: "Content",
+                column: "StorageLocationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StorageLocation_AccountId",

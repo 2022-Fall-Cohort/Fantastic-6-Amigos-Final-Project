@@ -19,7 +19,6 @@ namespace WMS_Inventory_API_Client.Controllers
 
         public ContentsController(IContentService service, IContainerService serviceContainer)
         {
-            TempData["Content"] = "Content";
             _service = service ?? throw new ArgumentNullException(nameof(service));
             _serviceContainer = serviceContainer ?? throw new ArgumentNullException(nameof(serviceContainer));
 
@@ -52,10 +51,8 @@ namespace WMS_Inventory_API_Client.Controllers
         }
 
         // GET: Content/Create
-        public async Task<IActionResult> Create()
+        public ActionResult Create()
         {
-            var response = await _serviceContainer.FindAll();
-            ViewData["ContainerId"] = new SelectList(response, "Id", "Description");
             return View();
         }
 
@@ -74,15 +71,15 @@ namespace WMS_Inventory_API_Client.Controllers
         // GET: Content/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            var response = await _serviceContainer.FindAll();
-            ViewData["ContainerId"] = new SelectList(response, "Id", "Description");
-
             var content = await _service.FindOne(id);
             if (content == null)
             {
                 return NotFound();
             }
 
+            int acctId = (int)content.Container.StorageLocation.AccountId;
+            var response = await _serviceContainer.Account(acctId);
+            ViewData["ContainerId"] = new SelectList(response, "Id", "Description");
 
             return View(content);
         }

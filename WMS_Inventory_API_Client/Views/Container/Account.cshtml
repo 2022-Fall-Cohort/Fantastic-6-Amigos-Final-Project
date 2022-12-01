@@ -52,9 +52,15 @@
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
+                @{
+                    TempData["accountId"] = Html.DisplayFor(modelItem => item.StorageLocation.AccountId);
+                }
             </tr>
         }
     </tbody>
 </table>
+<div>
+    <a style="color: white; cursor: pointer" onClick='location.href="/StorageLocation/Account/"+@TempData["accountId"]'><u>Back to Storage Location List</u></a>
+</div>
 <br />
 <br />
