@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<WMS_Inventory_API_Client.Models.StorageLocation>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Storage Location Account";
 }
 
 <h1 class="page-header">Storage Location</h1>
@@ -34,12 +34,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.ZipCode)
             </th>
-            <th>
+            <!--<th>
                 @Html.DisplayNameFor(model => model.Longitude)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Latitude)
-            </th>
+            </th>-->
             <th></th>
         </tr>
     </thead>
@@ -64,12 +64,14 @@
             <td data-title="Zipcode">
                 @Html.DisplayFor(modelItem => item.ZipCode)
             </td>
+
+            <!--<td>
             <td data-title="Longitude">
                 @Html.DisplayFor(modelItem => item.Longitude)
             </td>
             <td data-title="Latitude">
                 @Html.DisplayFor(modelItem => item.Latitude)
-            </td>
+            </td>-->
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

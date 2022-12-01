@@ -34,6 +34,7 @@ namespace WMS_Inventory_API_Client.Controllers
             {
                 return NotFound();
             }
+
             return View(account);
         }
         // GET: Account/Create

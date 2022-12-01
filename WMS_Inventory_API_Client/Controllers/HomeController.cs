@@ -44,6 +44,8 @@ namespace WMS_Inventory_API_Client.Controllers
             return View();
         }
 
+        public int? acctId;
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -68,6 +70,8 @@ namespace WMS_Inventory_API_Client.Controllers
                 else
                 {
                     TempData["OK"] = true;
+                    acctId = account.Id;
+
                     return RedirectToAction(nameof(MainPage));
                 }
             }

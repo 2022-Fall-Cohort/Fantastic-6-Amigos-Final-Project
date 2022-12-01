@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Details";
+    TempData["accountId"] = Html.DisplayFor(model => model.AccountId);
 }
 
 <h1>Details of Storage Location</h1>
@@ -79,8 +80,7 @@
             </tr>
         </tbody>
     </table>
-
-
+    
 <br/>
 <div id="no-more-tables">
 <table class="table">
@@ -111,13 +111,14 @@
                     <td data-title="Description">
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
-                    <td>
-                        @{
-                            TempData["containerId"] = item.Id;
-                        }
-                        <a style="color: royalblue; cursor: pointer" onClick='location.href="/Container/Details/"+@TempData["containerId"]'><u>Back to Container</u></a>
-
-                    </td>
+                <td>
+                    @{
+                        TempData["id"] = item.Id;
+                    }
+                    <a style="color: royalblue; cursor: pointer" onClick='location.href="/Container/Edit/"+@TempData["id"]'><u>Edit</u></a> |
+                    <a style="color: royalblue; cursor: pointer" onClick='location.href="/Container/Details/"+@TempData["id"]'><u>Details</u></a> |
+                    <a style="color: royalblue; cursor: pointer" onClick='location.href="/Container/Delete/"+@TempData["id"]'><u>Delete</u></a>
+                </td>
             </tr>
         }
     </tbody>
@@ -125,8 +126,7 @@
 </div>
 
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a style="color: white; cursor: pointer" onClick='location.href="/StorageLocation/Account/"+@TempData["accountId"]'><u>Back to Storage Location List</u></a>
 </div>
 <br />
 <br />

@@ -1,9 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
-using WMS_Inventory_API_Client.Models;
+using System.Security.Principal;
+using Container = WMS_Inventory_API_Client.Models.Container;
 using WMS_Inventory_API_Client.Services.Interfaces;
+using Spire.Pdf;
+using WMS_Inventory_API_Client.Models;
+using System.Security.Cryptography.X509Certificates;
 
 namespace WebMVC_API_Client.Controllers
 {
@@ -30,9 +35,22 @@ namespace WebMVC_API_Client.Controllers
         }
 
         // Example: https://localhost:7153/api/Containers
+
         public async Task<IActionResult> Index()
         {
+
             var response = await _service.FindAll();
+
+            return View(response);
+        }
+
+        public async Task<IActionResult> Account(int id)
+        {
+            var response = await _service.Account(id);
+
+            //PdfDocument doc = new PdfDocument();
+            //doc.LoadFromFile(@"C:/Users/willi/source/LoremIpsum.pdf");
+            //doc.Print();
 
             return View(response);
         }
@@ -72,14 +90,15 @@ namespace WebMVC_API_Client.Controllers
         // GET: Container/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            var response = await _serviceStorageLocation.FindAll();
-            ViewData["StorageLocationId"] = new SelectList(response, "Id", "LocationName");
-
             var container = await _service.FindOne(id);
             if (container == null)
             {
                 return NotFound();
             }
+
+            int acctId = (int)container.StorageLocation.AccountId;
+            var response = await _serviceStorageLocation.Account(acctId);
+            ViewData["StorageLocationId"] = new SelectList(response, "Id", "LocationName");
 
             return View(container);
         }
@@ -96,7 +115,7 @@ namespace WebMVC_API_Client.Controllers
             }
 
             var resultPut = await client.PutAsync<Container>(requestUri + container.Id.ToString(), container, new JsonMediaTypeFormatter());
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "Container", new { id = container.Id });
         }
 
         // GET: Container/Delete/5
