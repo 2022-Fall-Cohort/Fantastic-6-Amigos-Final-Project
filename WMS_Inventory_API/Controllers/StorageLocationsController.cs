@@ -22,10 +22,10 @@ namespace WMS_Inventory_API.Controllers
         }
 
         // GET: api/StorageLocations
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<StorageLocation>>> GetStorageLocation()
+        [HttpGet("Account/{acct}")]
+        public async Task<ActionResult<IEnumerable<StorageLocation>>> Account(int acct)
         {
-            return await _context.StorageLocation.Include(c => c.Container).ToListAsync();
+            return await _context.StorageLocation.Where(s => s.AccountId == acct).Include(c => c.Container).ToListAsync();
         }
 
         // GET: api/StorageLocations/5

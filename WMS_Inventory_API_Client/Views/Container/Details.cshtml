@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Details";
+    TempData["accountId"] = Model.StorageLocation.AccountId;
+    TempData["storageId"] = Model.StorageLocationId;
 }
 
 <h1 class="page-header">Container Details</h1>
@@ -100,26 +102,16 @@
                 </td>
                 <td>
                     @{
-                        TempData["id"] = item.Id;
-                    }
-                    <a style="color: royalblue; cursor: pointer" onClick='location.href="/Contents/Edit/"+@TempData["id"]'><u>Edit</u></a> |
-                    <a style="color: royalblue; cursor: pointer" onClick='location.href="/Contents/Details/"+@TempData["id"]'><u>Details</u></a> |
-                    <a style="color: royalblue; cursor: pointer" onClick ='location.href="/Contents/Delete/"+@TempData["id"]'><u>Delete</u></a>
-                </td>
-
-            </tr>
-        }
-    </tbody>
-</table>
+                        TempData["id"] = Html.DisplayFor(modelItem => item.Id);
+                     }
+                        <a style="color: royalblue; cursor: pointer" onClick='location.href="/Contents/Edit/"+@TempData["id"]'><u>Edit</u></a> |
+                        <a style="color: royalblue; cursor: pointer" onClick ='location.href="/Contents/Delete/"+@TempData["id"]'><u>Delete</u></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a style="color: white; cursor: pointer" onClick='location.href="/StorageLocation/Details/"+@TempData["storageId"]'><u>Back To Storage Location Detail</u></a> |
+    <a style="color: white; cursor: pointer" onClick='location.href="/Container/Account/"+@TempData["accountId"]'><u>Container List</u></a> |
+    <a style="color: white; cursor: pointer" onClick='location.href="/Contents/Create/"'><u>Add Contents</u></a>
 </div>
-<br />
-<br />
-
-<div>
-
-    <a asp-action="Index" style="color:white">Back to List</a>
-
-  <a style="color: white; cursor: pointer" onClick='location.href="/Container/Details/"+@TempData["containerId"]'><u>Delete</u></a>
-
-</div>
-

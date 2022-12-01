@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" id="navBar">
         
             <div class="container-fluid">
                 <div>
@@ -37,7 +37,6 @@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-
     </div>
 
     <footer id="footer" class="border-top footer text-muted">
@@ -50,17 +49,20 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
     <script>
+        var CreateAccount = document.getElementById("CreateAccount");
         var Login = document.getElementById("Login");
-        var LoggedIn = document.getElementById("LoggedIn");
-        var Logo = document.getElementById("logo");
-        if (Login.length > 0) {
-            LoggedIn.style.visibility = 'hidden';
-            Logo.style.visibility = 'hidden';
-        }
+        var NavBar = document.getElementById("navBar")
+        var Footer = document.getElementById("footer");
+        if ((Login == null)&&(CreateAccount == null)){
+            NavBar.style.visibility = 'visible';
+            Footer.style.visibility = 'visible';
+	    }
         else {
-            LoggedIn.style.visibility = 'visible';
-            Logo.style.visibility = 'visible';
-        }
+            NavBar.style.visibility = 'hidden';
+            Footer.style.visibility = 'hidden';
+	    }
+        
+
     </script>
 </body>
 </html>

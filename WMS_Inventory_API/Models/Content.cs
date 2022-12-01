@@ -7,5 +7,6 @@
         public string? Description { get; set; }
         public int? ContainerId { get; set; }
         public virtual Container? Container { get; set; }
+        public virtual StorageLocation? StorageLocation { get; set; }     
     }
 }

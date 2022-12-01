@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Edit";
+    TempData["accountId"] = Html.DisplayFor(model => model.StorageLocation.AccountId);
 }
 
 <h1 class="page-header" >Edit Container</h1>
@@ -34,9 +35,9 @@
         </form>
     </div>
 </div>
-
+<br/>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a style="color: white; cursor: pointer" onClick='location.href="/Container/Account/"+@TempData["accountId"]'><u>Back to Container</u></a>
 </div>
 <br />
 <br />

@@ -20,26 +20,17 @@
         <br />
         <ul>
             <li>
-                <a href='@Url.Action("Index", "Accounts")'>Account Information</a>
+                <a style="color: white; cursor: pointer" onClick='location.href="/Accounts/Details/1"'><u>Account</u></a>
             </li>
             <li>
-                <a href='@Url.Action("Index", "StorageLocation")'>Storage Locations</a>
+                <a style="color: white; cursor: pointer" onClick='location.href="/StorageLocation/Account/1"'><u>Storage Locations</u></a>
             </li>
             <li>
-                <a href='@Url.Action("Index", "Container")'>Containers</a>
+                <a style="color: white; cursor: pointer" onClick='location.href="/Container/Account/1"'><u>Containers</u></a>
             </li>
             <li>
                 <a href='@Url.Action("Index", "Contents")'>Content</a>
             </li> 
-            @*<li>
-                <a style="color: indianred" href='@Url.Action("Create", "StorageLocation")'>Add</a> a new Storage Location
-            </li>*@
-            @*<li>
-                <a style="color: indianred" href='@Url.Action("Create", "Container")'>Add</a> a new Container
-            </li>
-            <li>
-                <a style="color: indianred" href='@Url.Action("Create", "Contents")'>Add</a> new Content
-            </li>*@
         </ul>
         <br />
         <br />

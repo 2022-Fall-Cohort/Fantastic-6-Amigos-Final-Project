@@ -35,8 +35,6 @@
             <th>
                 Zip Code
             </th>
-            
-
         </tr>
     </thead>
   <tbody>
@@ -75,47 +73,10 @@
     </tbody>
 </table>
 </div>
-
-
-@*<div>
-    <h4>Account</h4>
-    <hr />
-    <tr>
-       
-        <td >
-            @Html.DisplayFor(model => model.Name)
-        </td>
-        
-        <td>
-            @Html.DisplayFor(model => model.Email)
-        </td>
-
-       
-        <td>
-            @Html.DisplayFor(model => model.Address1)
-        </td>
-       
-        <td>
-            @Html.DisplayFor(model => model.Address2)
-        </td>
-       
-        <td>
-            @Html.DisplayFor(model => model.City)
-        </td>
-        
-        <td>
-            @Html.DisplayFor(model => model.State)
-        </td>
-       
-        <td>
-            @Html.DisplayFor(model => model.ZipCode)
-        </td>
-    </tr>
-</div>*@
 <div>
-
     <a asp-action="Edit" asp-route-id="@Model?.Id" style="color:white">Edit</a> |
-    <a asp-action="Index" style="color:white">Back to List</a>
+    <a asp-action="Index" style="color:white">Back to List</a> |
+     <a asp-action="Delete" style="color:white" asp-route-id="@Model?.Id">Delete</a>
 </div>
 <br />
 <br />
