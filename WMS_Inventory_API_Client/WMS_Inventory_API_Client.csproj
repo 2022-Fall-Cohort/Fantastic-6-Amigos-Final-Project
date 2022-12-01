@@ -16,9 +16,11 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.11" />
+    <PackageReference Include="FreeSpire.Barcode" Version="6.6.0" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
+    <None Remove="FreeSpire.Barcode" />
   </ItemGroup>
 </Project>

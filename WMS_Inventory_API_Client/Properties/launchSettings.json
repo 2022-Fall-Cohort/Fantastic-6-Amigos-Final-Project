@@ -11,7 +11,7 @@
     "WMS_Inventory_API_Client": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7135",
+      "applicationUrl": "http://localhost:8589",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
