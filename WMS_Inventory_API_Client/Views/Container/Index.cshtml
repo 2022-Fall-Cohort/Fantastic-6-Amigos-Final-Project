@@ -62,5 +62,24 @@
     </tbody>
 </table>
 </div>
+<script>
+    //{
+    //    GeneratedBarcode barcode = IronBarCode.BarcodeWriter.CreateBarcode("Container.Id", BarcodeEncoding.AllOneDimensional);
+    //    barcode.SaveAsPng("barcode.png");
+    //}
+
+            // Creating a barcode:
+            var containerId = container.Id.ToString();
+            GeneratedBarcode barcode = IronBarCode.BarcodeWriter.CreateBarcode(containerId, BarcodeWriterEncoding.EAN8);
+      
+            // Save barcode as in image:
+            barcode.SaveAsPng("barcode.png");
+
+            Image BarcodeImage = barcode.Image; // Can be used as Image
+
+            // Reading a barcode with IronBarcode:
+            var resultFromFile = BarcodeReader.Read("barcode.png"); // From a file
+            return View(container);
+</script>
 <br />
 <br />
