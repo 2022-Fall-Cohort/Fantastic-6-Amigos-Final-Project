@@ -20,26 +20,21 @@
                 @Html.DisplayNameFor(model => model.StorageLocation.LocationName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StorageLocation.Id)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Type)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
-        {
+            {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.StorageLocation.LocationName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StorageLocation.Id)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Type)
@@ -52,15 +47,56 @@
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@item.Id">Open modal for getbootstrap</button>
+                </td>
                 @{
                     TempData["accountId"] = Html.DisplayFor(modelItem => item.StorageLocation.AccountId);
                 }
             </tr>
-        }
+                    }
     </tbody>
 </table>
 <div>
     <a style="color: white; cursor: pointer" onClick='location.href="/StorageLocation/Account/"+@TempData["accountId"]'><u>Back to Storage Location List</u></a>
 </div>
+
+    <div class="modal fade" id="barcodeModal" show="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Recipient:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+</div>
+@section Scripts {
+<script type="text/javascript">
+    console.log($('#barcodeModal'));
+    $('#barcodeModal').on('show.bs.modal', function (event) {
+         console.log("Test")
+        var modal = $(this)
+    })
+</script>
+}
 <br />
 <br />

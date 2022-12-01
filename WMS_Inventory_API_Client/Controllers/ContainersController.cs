@@ -9,7 +9,7 @@ using WMS_Inventory_API_Client.Services.Interfaces;
 using Spire.Pdf;
 using WMS_Inventory_API_Client.Models;
 using System.Security.Cryptography.X509Certificates;
-
+using Spire.Barcode;
 
 namespace WebMVC_API_Client.Controllers
 {
@@ -42,6 +42,7 @@ namespace WebMVC_API_Client.Controllers
 
             var response = await _service.FindAll();
 
+
             return View(response);
         }
 
@@ -55,7 +56,8 @@ namespace WebMVC_API_Client.Controllers
 
             return View(response);
         }
-
+        
+        
         // GET: Container/Details/5
         public async Task<IActionResult> Details(int id)
         {
@@ -65,8 +67,24 @@ namespace WebMVC_API_Client.Controllers
             {
                 return NotFound();
             }
+
             return View(container);
         }
+
+        public async Task<IActionResult> Barcode(int id)
+        {
+
+            var container = await _service.FindOne(id);
+            TempData["containerId"] = id;
+            //BarcodeSettings containerCode = new BarcodeSettings();
+            //containerCode.Type = BarCodeType.Code39;
+            //containerCode.Data = "*" + id.ToString() + "*";
+            //BarCodeGenerator bg = new BarCodeGenerator(containerCode);
+            //bg.GenerateImage().Save("barcode.png");
+
+            return View(container);
+        }
+
 
         // GET: Container/Create
         public async Task<IActionResult> Create()
