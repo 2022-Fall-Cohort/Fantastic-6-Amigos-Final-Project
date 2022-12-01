@@ -9,7 +9,7 @@
 
 
 
-<div>
+<div id="no-more-tables">
     <table class="table">
         <caption>
             Storage Location
@@ -45,35 +45,35 @@
         </thead>
         <tbody>
             <tr>
-    <td>
+    <td data-title ="Location Name">
                     @Html.DisplayFor(model => model.LocationName)
     </td>
 
-    <td>
+    <td data-title="Address1">
                     @Html.DisplayFor(model => model.Address1)
     </td>
 
-    <td>
+    <td data-title="Address2">
                     @Html.DisplayFor(model => model.Address2)
     </td>
 
-    <td>
+    <td data-title="City">
                     @Html.DisplayFor(model => model.City)
     </td>
 
-    <td>
+    <td data-title ="State">
                     @Html.DisplayFor(model => model.State)
     </td>
 
-    <td>
+    <td data-title="ZipCode">
                     @Html.DisplayFor(model => model.ZipCode)
     </td>
 
-    <td>
+   <td data-title="Longitude">
                     @Html.DisplayFor(model => model.Longitude)
     </td>
 
-    <td>
+   <td data-title="Latitude">
                     @Html.DisplayFor(model => model.Latitude)
     </td>
 
