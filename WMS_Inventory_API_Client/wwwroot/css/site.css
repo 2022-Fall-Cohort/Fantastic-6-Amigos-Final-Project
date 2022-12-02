@@ -55,8 +55,19 @@ img {
 .table {
     background-color: white;
     border: 3px double black;
-    width: 80%;
-    margin: 3%;
+    width: fit-content;
+    margin: auto;
+    align-self: center;
+}
+
+.center {
+    display:flex;
+    justify-content:center;
+}
+
+.link {
+    color: darkred; 
+    cursor: pointer;
 }
 
 th, td {
