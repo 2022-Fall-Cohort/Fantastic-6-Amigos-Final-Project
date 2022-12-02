@@ -6,21 +6,18 @@
 
 <h1 class="page-header">Containers</h1>
 
-
-<form action="/Containers/Create">
-    <div>
-        <button type="submit" class="btn btn-primary">Add Container</button>
-    </div>
-</form>
+<hr />
+<br />
+<br />
+<p>
+    <a class="center" asp-action="Create">Create New</a>
+</p>
 
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.StorageLocation.LocationName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StorageLocation.Id)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Type)
@@ -37,9 +34,6 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.StorageLocation.LocationName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StorageLocation.Id)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Type)

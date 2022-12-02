@@ -5,9 +5,10 @@
     TempData["accountId"] = Html.DisplayFor(model => model.AccountId);
 }
 
-<h1>Details of Storage Location</h1>
-
-
+<h1 class ="page-header">Storage Location Details</h1>
+<hr />
+<br />
+<br />
 
 <div id="no-more-tables">
     <table class="table">
@@ -34,12 +35,12 @@
                 <th>
                     ZipCode
                 </th>
-                <th>
+                <!--<th>
                    Longitude
                 </th>
                 <th>
                    Latitude
-                </th>
+                </th>-->
                
             </tr>
         </thead>
@@ -69,18 +70,18 @@
                     @Html.DisplayFor(model => model.ZipCode)
     </td>
 
-   <td data-title="Longitude">
+   <!--<td data-title="Longitude">
                     @Html.DisplayFor(model => model.Longitude)
     </td>
 
    <td data-title="Latitude">
                     @Html.DisplayFor(model => model.Latitude)
-    </td>
+    </td>-->
 
             </tr>
         </tbody>
     </table>
-    
+ </div>   
 <br/>
 <div id="no-more-tables">
 <table class="table">
@@ -125,7 +126,9 @@
 </table>
 </div>
 <div class="center">
-        <a class="link" onClick='location.href="/StorageLocation/Account/"+@TempData["accountId"]'><u>Back to Storage Location List</u></a>
+    <a class="link" onClick='location.href="/StorageLocation/Account/"+@TempData["accountId"]'><u>Back to Storage Location List</u></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a class="link" onClick='location.href="/Container/Create/"'><u>Add Container</u></a>
+
 </div>
 <br />
 <br />

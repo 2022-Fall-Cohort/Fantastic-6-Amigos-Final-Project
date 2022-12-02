@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using WMS_Inventory_API_Client.Data;
@@ -79,8 +80,11 @@ namespace WMS_Inventory_API_Client.Controllers
         }
 
         // GET: Content/Create
-        public ActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var response = await _serviceContainer.FindAll();
+            ViewData["ContainerId"] = new SelectList(response, "Id", "Description");
+
             return View();
         }
 
@@ -93,7 +97,7 @@ namespace WMS_Inventory_API_Client.Controllers
             content.Id = null;
             var resultPost = await client.PostAsync<Content>(requestUri, content, new JsonMediaTypeFormatter());
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Container");
         }
 
         // GET: Content/Edit/5

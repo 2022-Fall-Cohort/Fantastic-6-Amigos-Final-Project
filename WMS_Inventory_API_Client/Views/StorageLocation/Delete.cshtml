@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Delete";
+    TempData["accountId"] = Html.DisplayFor(model => model.AccountId);
+
 }
 
 <h1 class="page-header">Delete Storage Locations</h1>
@@ -67,6 +69,10 @@
         <a asp-action="Index">Back to List</a>
     </form>
 </div>
+<div>
+    <a style="color: white; cursor: pointer; padding-left:35%" onClick='location.href="/StorageLocation/Account/"+@TempData["accountId"]'><u>Back to Storage Location List</u></a>
+</div>
+
 <br />
 <br />
 
