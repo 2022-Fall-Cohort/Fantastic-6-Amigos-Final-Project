@@ -13,6 +13,7 @@
     <a class="center" asp-action="Create">Create New</a>
 </p>
 
+<div id="no-more-tables">
 <table class="table">
     <thead>
         <tr>
@@ -32,13 +33,13 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td data-title="Location Name">
                     @Html.DisplayFor(modelItem => item.StorageLocation.LocationName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Type)
                 </td>
-                <td>
+                <td data-title="Description">
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
