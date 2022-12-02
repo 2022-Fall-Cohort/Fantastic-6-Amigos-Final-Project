@@ -162,6 +162,35 @@ p a {
         font-size: 15px;
     }
 }
+@media only screen and (max-width:500px) {
+    tbody, tr, td {
+        display: block;
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    td {
+        position: relative;
+        padding-left: 50%;
+        border: none;
+        border-bottom: 1px solid #eee;
+    }
+
+        td::before {
+            content: attr(data-title);
+            position: absolute;
+            left: 6px;
+            font-weight: bold;
+        }
+
+    tr {
+        border-bottom: 1px solid #ccc;
+    }
+}
 
 
 

@@ -13,6 +13,7 @@
     </div>
 </form>
 
+<div id="no-more-tables">
 <table class="table">
     <thead>
         <tr>
@@ -35,16 +36,16 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td data-title="Location Name">
                     @Html.DisplayFor(modelItem => item.StorageLocation.LocationName)
                 </td>
-                <td>
+                <td data-title="Location Id">
                     @Html.DisplayFor(modelItem => item.StorageLocation.Id)
                 </td>
-                <td>
+                <td data-title="Type">
                     @Html.DisplayFor(modelItem => item.Type)
                 </td>
-                <td>
+                <td data-title="Description">
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
@@ -59,6 +60,7 @@
         }
     </tbody>
 </table>
+</div>
 <div>
     <a style="color: white; cursor: pointer" onClick='location.href="/StorageLocation/Account/"+@TempData["accountId"]'><u>Back to Storage Location List</u></a>
 </div>
