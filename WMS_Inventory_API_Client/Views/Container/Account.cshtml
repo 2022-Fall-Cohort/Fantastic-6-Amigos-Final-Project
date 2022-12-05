@@ -49,7 +49,7 @@
                 </td>
                 <td>
 
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@item.Id" >Barcode</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@item.Id">Barcode</button>
                 </td>
                 @{
                     TempData["accountId"] = Html.DisplayFor(modelItem => item.StorageLocation.AccountId);
@@ -79,12 +79,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group" id="append"> 
+                    <div class="form-group" id="barcodeDiv">
                         <img id="barcodeImage" class="barcodeImage" />
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="generate_barcode">Generate Barcode</button>
                         <input type="hidden" asp-for="@Id" />
                         <div class="form-group">
                             <input type="submit" value="Save" class="btn btn-primary" />
@@ -92,6 +91,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     </form>
 </div>
 
@@ -108,42 +108,31 @@
 <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
 
 <script>
-    $('#exampleModal').on('show.bs.modal', function (event) {
-        console.log(@TempData["accountId"]);
 
-        const node = document.createElement("img")
-        const img = document.getElementById("append").appendChild(node)
-	    img.setAttribute("id", "barcodeImage").setAttribute("class", "barcodeImage");
-       
+    $('#exampleModal').on('show.bs.modal', function (event) {
+
+        console.log("TempData[accountId] is ", @TempData["accountId"]);
+
+        const image = document.createElement("img");
+        var imageElement = document.getElementById("barcodeDiv").appendChild(image);
+        imageElement.setAttribute("id", "barcodeImage");
+        imageElement.setAttribute("class", "barcodeImage");
 
         var button = $(event.relatedTarget) // Button that triggered the modal
 
-        var recipient = button.data('whatever'); // Extract info from data-* attributes
-        
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        var modal = $(this)
-        modal.find('.modal-title').text('Barcode for this Container')
-        document.getElementById("generate_barcode").addEventListener('click', function () {
+        var containerId = button.data('whatever'); // Extract info from data-* attributes
 
-            console.log("test");
-            var input = button.data('whatever');
+        $('.modal-title').text('Barcode for Container # ' + containerId);
 
-            JsBarcode("#barcodeImage", input, {
-		        format: "CODE39",
-                displayValue: false
-		    });
+        JsBarcode("#barcodeImage", containerId, {
+		    format: "CODE39",
+            displayValue: false
+		});
 
-            document.getElementById("barcodeImage").style.display = 'block';
- 
-        });
-
+        $("#barcodeImage").remove();
      });
-        const element = document.getElementById("barcodeImage");
-        element.remove();
 
-
-    </script>
+</script>
 
 <br />
 <br />
