@@ -36,9 +36,6 @@
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["DescriptionSortParam"]"> @Html.DisplayNameFor(model => model.Description) </a>
 
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ContainerId)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -51,14 +48,11 @@
             <td data-title="Description">
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <td data-title="ContainerId">
-                @Html.DisplayFor(modelItem => item.ContainerId)
-            </td>
             @{
                     TempData["containerid"] = Html.DisplayFor(modelItem => item.ContainerId);
             }
             <td>
-                <a style="color: royalblue; cursor: pointer" onClick='location.href="/Container/Details/"+@TempData["containerId"]'><u>To Container</u></a>
+                <a style="color: royalblue; cursor: pointer" onClick='location.href="/Container/Details/"+@TempData["containerId"]'><u>Go To Container</u></a>
             </td>
         </tr>
 }
