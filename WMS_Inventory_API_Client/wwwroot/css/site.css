@@ -62,8 +62,19 @@ img {
 .table {
     background-color: white;
     border: 3px double black;
-    width: 80%;
-    margin: 3%;
+    width: fit-content;
+    margin: auto;
+    align-self: center;
+}
+
+.center {
+    display:flex;
+    justify-content:center;
+}
+
+.link {
+    color: darkred; 
+    cursor: pointer;
 }
 
 th, td {
@@ -166,6 +177,35 @@ p a {
     .menu {
         width: 300px;
         font-size: 15px;
+    }
+}
+@media only screen and (max-width:500px) {
+    tbody, tr, td {
+        display: block;
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    td {
+        position: relative;
+        padding-left: 50%;
+        border: none;
+        border-bottom: 1px solid #eee;
+    }
+
+        td::before {
+            content: attr(data-title);
+            position: absolute;
+            left: 6px;
+            font-weight: bold;
+        }
+
+    tr {
+        border-bottom: 1px solid #ccc;
     }
 }
 

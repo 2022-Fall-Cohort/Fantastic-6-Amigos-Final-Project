@@ -2,18 +2,21 @@
 
 @{
     ViewData["Title"] = "Create";
+    TempData["accountId"] = 1;
+
 }
 
 <h1 class="page-header">Create Storage Location</h1>
 
-<h4>StorageLocation</h4>
 <hr />
-<div class="row">
+<br />
+<br />
+<div class="row" style="padding-left:35%">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="LocationName" class="control-label"></label>
+                Location Name
                 <input asp-for="LocationName" class="form-control" />
                 <span asp-validation-for="LocationName" class="text-danger"></span>
             </div>
@@ -42,7 +45,7 @@
                 <input asp-for="ZipCode" class="form-control" />
                 <span asp-validation-for="ZipCode" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <!--<div class="form-group">
                 <label asp-for="Longitude" class="control-label"></label>
                 <input asp-for="Longitude" class="form-control" />
                 <span asp-validation-for="Longitude" class="text-danger"></span>
@@ -52,19 +55,19 @@
                 <input asp-for="Latitude" class="form-control" />
                 <span asp-validation-for="Latitude" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            div class="form-group">
                 <label asp-for="AccountId" class="control-label"></label>
                 <select asp-for="AccountId" class ="form-control" asp-items="ViewBag.AccountId"></select>
-            </div>
+            </div>-->
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
+<br />
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a style="color: darkred; cursor: pointer; padding-left:35%" onClick='location.href="/StorageLocation/Account/"+@TempData["accountId"]'><u>Back to Storage Location List</u></a>
 </div>
 <br />
 <br />

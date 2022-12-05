@@ -5,15 +5,19 @@
 }
 
 <h1 class="page-header">Storage Location</h1>
-
+<hr />
+<br />
+<br />
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="center" asp-action="Create">Create New Storage Location</a>
 </p>
+
+<div id="no-more-tables">
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.LocationName)
+                Storage Location
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Address1)
@@ -43,22 +47,22 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td data-title="Location Name">
                     @Html.DisplayFor(modelItem => item.LocationName)
                 </td>
-                <td>
+                <td data-title="Address1"> 
                     @Html.DisplayFor(modelItem => item.Address1)
                 </td>
-                <td>
+                <td data-title="Address2">
                     @Html.DisplayFor(modelItem => item.Address2)
                 </td>
-                <td>
+                <td data-title="City">
                     @Html.DisplayFor(modelItem => item.City)
                 </td>
-                <td>
+                <td data-title="State">
                     @Html.DisplayFor(modelItem => item.State)
                 </td>
-                <td>
+                <td data-title="ZipCode">
                     @Html.DisplayFor(modelItem => item.ZipCode)
                 </td>
                 <!--<td>
@@ -76,5 +80,6 @@
         }
     </tbody>
 </table>
+</div>
 <br />
 <br />

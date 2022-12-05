@@ -2,13 +2,16 @@
 
 @{
     ViewData["Title"] = "Create";
+    TempData["accountId"] = 1;
+
 }
 
 <h1 class="page-header" >Create Container</h1>
-
-<h4>Container</h4>
 <hr />
-<div class="row">
+<br />
+<br />
+
+<div class="row" style="padding-left:35%">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -33,9 +36,9 @@
         </form>
     </div>    
 </div>
-
+<br />
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a style="color: darkred; cursor: pointer; padding-left:35%" onClick='location.href="/Container/Account/"+@TempData["accountId"]'><u>Back to Container List</u></a>
 </div>
 <br />
 <br />

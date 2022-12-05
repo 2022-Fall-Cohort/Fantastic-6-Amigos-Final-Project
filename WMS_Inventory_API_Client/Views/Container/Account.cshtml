@@ -6,18 +6,19 @@
 
 <h1 class="page-header">Containers</h1>
 
+<hr />
+<br />
+<br />
+<p>
+    <a class="center" asp-action="Create">Create New Container</a>
+</p>
 
-<form action="/Containers/Create">
-    <div>
-        <button type="submit" class="btn btn-primary">Add Container</button>
-    </div>
-</form>
-
+<div id="no-more-tables">
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.StorageLocation.LocationName)
+                Storage Location
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Type)
@@ -33,13 +34,13 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td data-title="Location Name">
                     @Html.DisplayFor(modelItem => item.StorageLocation.LocationName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Type)
                 </td>
-                <td>
+                <td data-title="Description">
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
@@ -58,8 +59,8 @@
         }
     </tbody>
 </table>
-<div>
-    <a style="color: white; cursor: pointer" onClick='location.href="/StorageLocation/Account/"+@TempData["accountId"]'><u>Back to Storage Location List</u></a>
+<div class="center">
+    <a class="link" onClick='location.href="/StorageLocation/Account/"+@TempData["accountId"]'><u>Back to Storage Location List</u></a>
 </div>
 
 @{

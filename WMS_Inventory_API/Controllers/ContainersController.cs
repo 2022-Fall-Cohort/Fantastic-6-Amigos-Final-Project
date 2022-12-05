@@ -22,6 +22,13 @@ namespace WMS_Inventory_API.Controllers
         }
 
         // GET: api/Containers
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Container>>> GetContainer()
+        {
+            return await _context.Container.Include(s => s.StorageLocation).Include(c => c.Content).ToListAsync();
+        }
+
+        // GET: api/Containers/Account
         [HttpGet("Account/{acct}")]
         public async Task<ActionResult<IEnumerable<Container>>> Account(int acct)
         {

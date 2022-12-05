@@ -6,16 +6,16 @@
 }
 
 <h1 class="page-header">Edit Storage Location</h1>
-
-<h4>StorageLocation</h4>
 <hr />
-<div class="row">
+<br />
+<br />
+<div class="row" style="padding-left:35%">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="LocationName" class="control-label"></label>
+                Location Name
                 <input asp-for="LocationName" class="form-control" />
                 <span asp-validation-for="LocationName" class="text-danger"></span>
             </div>
@@ -67,7 +67,7 @@
 </div>
 <br/>
 <div>
-    <a style="color: white; cursor: pointer" onClick='location.href="/StorageLocation/Account/"+@TempData["accountId"]'><u>Back to Storage Location List</u></a>
+    <a style="color: white; cursor: pointer; padding-left:35%" onClick='location.href="/StorageLocation/Account/"+@TempData["accountId"]'><u>Back to Storage Location List</u></a>
 </div>
 <br />
 <br />

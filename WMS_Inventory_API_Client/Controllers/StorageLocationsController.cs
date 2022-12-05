@@ -51,8 +51,6 @@ namespace WMS_Inventory_API_Client.Controllers
         // GET: StorageLocation/Create
         public async Task<IActionResult> Create()
         {
-            var response = await _serviceAccount.FindAll();
-            ViewData["AccountId"] = new SelectList(response, "Id", "Name");
             return View();
         }
         // POST: StorageLocation/Create
@@ -61,8 +59,9 @@ namespace WMS_Inventory_API_Client.Controllers
         public async Task<IActionResult> Create([Bind("Id, LocationName, Address1, Address2, City, State, ZipCode, Longitude, Latitude, AccountId")] StorageLocation storageLocation)
         {
             storageLocation.Id = null;
+            storageLocation.AccountId = 1;
             var resultPost = await client.PostAsync<StorageLocation>(requestUri, storageLocation, new JsonMediaTypeFormatter());
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Account", "StorageLocation", new { id = storageLocation.AccountId });
         }
         // GET: StorageLocation/Edit/5
         public async Task<IActionResult> Edit(int id)
