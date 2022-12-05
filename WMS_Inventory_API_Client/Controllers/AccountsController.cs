@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using WMS_Inventory_API_Client.Models;
@@ -71,7 +72,7 @@ namespace WMS_Inventory_API_Client.Controllers
                 return NotFound();
             }
             var resultPut = await client.PutAsync<Account>(requestUri + account.Id.ToString(), account, new JsonMediaTypeFormatter());
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "Accounts", new { id = account.Id });
         }
         // GET: Account/Delete/5
         public async Task<IActionResult> Delete(int id)
