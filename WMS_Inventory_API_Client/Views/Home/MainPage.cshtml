@@ -1,7 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-   <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
+
+<script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
+<script src="https://unpkg.com/quagga@0.12.1/dist/quagga.min.js"></script>
+
 <body>
     <div align="center" class="menu-header">
         <img class="menu-logo" src="/css/WMS.logo.jpg" alt="WMS Logo" />
@@ -30,49 +33,54 @@
             </li>
             <li>
                 <a href='@Url.Action("Index", "Contents")'>Content</a>
-            </li> 
+            </li>
         </ul>
-
-            <div id="qr-reader" class="scanner" style="width: 200px;">
-         <script>
-             
-                function onScanSuccess(decodedText, decodedResult)
-                    {
-                        console.log(`Code scanned = ${decodedText}`, decodedResult);
-                    }
-                        var html5QrcodeScanner = new Html5QrcodeScanner(
-                             "qr-reader", { fps: 10, qrbox: 250 });
-                           html5QrcodeScanner.render(onScanSuccess);
-        </script>
+        <div>
+            <button id="scanner">Scan a Barcode</button>
         </div>
-        @*   class Html5Qrcode {
-                    constructor(elementId: string, config: Html5QrcodeFullConfig) {}
+        <div id="barcode-reader" style="display:none;">
+            <input type="file" accept="image/*" capture="camera" id="barcode-file-input" />
+        </div>
 
-                /** Start scanning. */
-                    start(cameraIdOrConfig: Html5QrcodeIdentifier,
-                    configuration: Html5QrcodeCameraScanConfig | undefined,
-                    qrCodeSuccessCallback: QrcodeSuccessCallback | undefined,
-                    qrCodeErrorCallback: QrcodeErrorCallback | undefined,
-                ): Promise<null>
-                         {}
+        <script>const targetDiv = document.getElementById("barcode-reader")
+            const btn = document.getElementById("scanner")
 
-                /** Stop scanning. */
-                stop(): Promise<void>
-                {}
 
-                /** Clear the rendered surface. */
-                clear(): void {}
+            btn.addEventListener('click', function () {
+                if (targetDiv.style.display === 'none') {
+                    targetDiv.style.display = 'block';
+                } else {
+                    targetDiv.style.display = 'none';
+                }
+            });
 
-                /** Scan a file. */
-                scanFile(
-                imageFile: File,
-                showImage?: boolean): Promise<string>
-                    {}
+            var results;
 
-                    /** Returns list of cameras in the device, invokes permission request. */
-                static getCameras(): Promise<Array><CameraDevice>/> {}
-            }*@
-        
+            Quagga.init({
+                inputStream: {
+                    name: "Live",
+                    type: "LiveStream",
+                    target: document.querySelector('#barcode-reader')
+                },
+                decoder: {
+                    readers: ["code_39_reader"]
+                }
+            }, function (err) {
+                if (err) {
+                    console.log(err);
+                    return
+                }
+                console.log("Initialization finished. Ready to start");
+                Quagga.start();
+            });
+
+            Quagga.onDetected(function (result) {
+                results = result.codeResult.code;
+                console.log(results);
+                Quagga.stop();
+                location.replace("http://localhost:8589/Container/Details/" + results)
+            });</script>
+
         <br />
         <br />
         <br />

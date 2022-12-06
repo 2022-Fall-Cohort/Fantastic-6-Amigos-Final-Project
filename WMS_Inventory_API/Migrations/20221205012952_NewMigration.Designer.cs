@@ -12,8 +12,8 @@ using WMS_Inventory_API;
 namespace WMS_Inventory_API.Migrations
 {
     [DbContext(typeof(InventoryContext))]
-    [Migration("20221201161313_First")]
-    partial class First
+    [Migration("20221205012952_NewMigration")]
+    partial class NewMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

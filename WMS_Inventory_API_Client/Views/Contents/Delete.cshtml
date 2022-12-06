@@ -5,11 +5,12 @@
 }
 
 <h1 class="page-header">Delete Contents</h1>
+<hr />
+<br />
+<br />
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Content</h4>
-    <hr />
+<h3 style="padding-left:35%">Are you sure you want to delete this?</h3>
+<div style="padding-left:35%">
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Quantity)
@@ -37,10 +38,12 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a> |
-        <a style="color: royalblue; cursor: pointer" onClick='location.href="/Container/Details/"+@TempData["containerId"]'><u>Back to Container</u></a>
+        <input type="submit" value="Delete" class="btn btn-danger" /> 
     </form>
 </div>
+<div>
+    <a style="color: darkred; cursor: pointer; padding-left:35%" onClick='location.href="/Container/Details/"+@TempData["containerId"]' '><u>Back to Storage Location Details</u></a>
+</div>
+
 <br />
 <br />
