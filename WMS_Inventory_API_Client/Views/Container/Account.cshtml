@@ -50,10 +50,11 @@
                 </td>
                 <td>
 
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@item.Id">Barcode</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@item.Id" data-description="@item.Description">Barcode</button>
                 </td>
                 @{
                     TempData["accountId"] = Html.DisplayFor(modelItem => item.StorageLocation.AccountId);
+              
                 }
             </tr>
         }
@@ -87,7 +88,7 @@
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <input type="hidden" asp-for="@Id" />
                         <div class="form-group">
-                            <input type="submit" value="Save" class="btn btn-primary" />
+                            <button id="savePDF">Save as PDF</button>
                         </div>
                     </div>
                 </div>
@@ -107,6 +108,7 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
 
 <script>
 
@@ -122,13 +124,25 @@
         var button = $(event.relatedTarget) // Button that triggered the modal
 
         var containerId = button.data('whatever'); // Extract info from data-* attributes
+        var containerDesc = button.data('description');
 
-        $('.modal-title').text('Barcode for Container # ' + containerId);
-
-        JsBarcode("#barcodeImage", containerId, {
+        $('.modal-title').text('Barcode for ' + containerDesc);
+        
+       JsBarcode("#barcodeImage", containerId, {
 		    format: "CODE39",
             displayValue: false
 		});
+
+       var src = document.getElementById("barcodeImage").getAttribute("src")
+        console.log(src)
+        var pdf = new jsPDF();
+        pdf.addImage(src, 10, 10);
+        pdf.text(containerDesc, 20, 10);
+        function createPDF() {
+            pdf.save('barcode.pdf');
+	    }
+        var btn = document.getElementById("savePDF");
+        btn.addEventListener('click', createPDF);
 
         $("#barcodeImage").remove();
      });
