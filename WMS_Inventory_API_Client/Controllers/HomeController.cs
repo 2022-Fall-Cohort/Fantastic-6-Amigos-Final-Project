@@ -43,6 +43,10 @@ namespace WMS_Inventory_API_Client.Controllers
         {
             return View();
         }
+        public IActionResult Developers()
+        {
+            return View();
+        }
 
         public int? acctId;
 

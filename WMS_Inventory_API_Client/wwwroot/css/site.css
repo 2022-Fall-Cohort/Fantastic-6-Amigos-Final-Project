@@ -45,7 +45,10 @@ img {
     font-size: 30px;
     text-align: left;
 }
-
+.scanner {
+    align-items:center;
+    font-size: 10px;
+}
 .search {
     margin: auto;
     color: white;
@@ -100,8 +103,35 @@ ul a {
 p a {
     color: white;
 }
+.reader {
+    font-size:10px;
+}
+/*.container {
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}*/
+.dev-img {
+   width: 200px;
+   height: 200px;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    justify-content: center;
+}
 
-
+.col {
+    flex: 0 0 calc(15%);
+    flex-basis: 30%;
+    margin: 5px;
+    text-align: center;
+}
+p {
+    text-align: center;
+}
 @media only screen and (max-width:768px) {
     #no-more-tables tbody,
     #no-more-tables tr,
