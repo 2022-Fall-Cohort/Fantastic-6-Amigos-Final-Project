@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-    <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
+<script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
 <body>
     <div align="center" class="menu-header">
         <img class="menu-logo" src="/css/WMS.logo.jpg" alt="WMS Logo" />
@@ -19,60 +19,118 @@
         </div>
         <br />
         <ul>
-            <li>
-                <a style="color: white; cursor: pointer" onClick='location.href="/Accounts/Details/1"'><u>Account</u></a>
+            <li id="acctId">
             </li>
-            <li>
-                <a style="color: white; cursor: pointer" onClick='location.href="/StorageLocation/Account/1"'><u>Storage Locations</u></a>
+            <li id="storage">
             </li>
-            <li>
-                <a style="color: white; cursor: pointer" onClick='location.href="/Container/Account/1"'><u>Containers</u></a>
+            <li id="containers">
             </li>
-            <li>
+            <li id="content">
                 <a href='@Url.Action("Index", "Contents")'>Content</a>
-            </li> 
+            </li>
         </ul>
-            <div id="qr-reader" style="width: 300px"></div>
-         <script>
-                function onScanSuccess(decodedText, decodedResult)
-                    {
-                        console.log(`Code scanned = ${decodedText}`, decodedResult);
-                    }
-                        var html5QrcodeScanner = new Html5QrcodeScanner(
-                             "qr-reader", { fps: 10, qrbox: 250 });
-                           html5QrcodeScanner.render(onScanSuccess);
+        <div id="qr-reader" style="width: 300px"></div>
+
+        <script>
+            const LOCAL_STORAGE_KEY = "WMS_AccountId";
+            var acctId = "@TempData["AccountId"]";
+            if (acctId != "") {
+                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(acctId));
+            }
+            else {
+                acctId = localStorage.getItem(LOCAL_STORAGE_KEY);
+            }
+            setupAccountLink();
+            setupStorageLocationsLink();
+            setupContainersLink();
+            function setupAccountLink() {
+                var newAcctId = acctId.replace(/"/g, '');
+                var tmp = "/Accounts/Details/" + newAcctId;
+                console.log("tmp is", tmp);
+                const node = document.createElement("a")
+                const aTag = document.getElementById("acctId").appendChild(node)
+                aTag.innerHTML = "Account";
+                aTag.setAttribute("id", "Account");
+                aTag.setAttribute("href", tmp);
+                aTag.setAttribute("style", "color: white; cursor: pointer");
+                aTag.setAttribute("display", "block");
+                console.log("newAcctId is", newAcctId);
+                console.log("aTag is", aTag);
+                return;
+            }
+            function setupStorageLocationsLink() {
+                var newAcctId = acctId.replace(/"/g, '');
+                var tmp = "/StorageLocation/Account/" + newAcctId;
+                console.log("tmp is", tmp);
+                const node = document.createElement("a")
+                const aTag = document.getElementById("storage").appendChild(node)
+                aTag.innerHTML = "Storage Locations";
+                aTag.setAttribute("id", "StorageLocations");
+                aTag.setAttribute("href", tmp);
+                aTag.setAttribute("style", "color: white; cursor: pointer");
+                aTag.setAttribute("display", "block");
+                console.log("newAcctId is", newAcctId);
+                console.log("aTag is", aTag);
+                return;
+            }
+            function setupContainersLink() {
+                var newAcctId = acctId.replace(/"/g, '');
+                var tmp = "/Container/Account/" + newAcctId;
+                console.log("tmp is", tmp);
+                const node = document.createElement("a")
+                const aTag = document.getElementById("containers").appendChild(node)
+                aTag.innerHTML = "Containers";
+                aTag.setAttribute("id", "Containers");
+                aTag.setAttribute("href", tmp);
+                aTag.setAttribute("style", "color: white; cursor: pointer");
+                aTag.setAttribute("display", "block");
+                console.log("newAcctId is", newAcctId);
+                console.log("aTag is", aTag);
+                return;
+            }
+        </script>
+
+        <div id="qr-reader" style="width: 300px"></div>
+        <script>
+            function onScanSuccess(decodedText, decodedResult) {
+                console.log(`Code scanned = ${decodedText}`, decodedResult);
+            }
+            var html5QrcodeScanner = new Html5QrcodeScanner(
+                "qr-reader", { fps: 10, qrbox: 250 });
+            html5QrcodeScanner.render(onScanSuccess);
         </script>
         @*   class Html5Qrcode {
-                    constructor(elementId: string, config: Html5QrcodeFullConfig) {}
+        constructor(elementId: string, config: Html5QrcodeFullConfig) {}
 
-                /** Start scanning. */
-                    start(cameraIdOrConfig: Html5QrcodeIdentifier,
-                    configuration: Html5QrcodeCameraScanConfig | undefined,
-                    qrCodeSuccessCallback: QrcodeSuccessCallback | undefined,
-                    qrCodeErrorCallback: QrcodeErrorCallback | undefined,
-                ): Promise<null>
-                         {}
+        /** Start scanning. */
+        start(cameraIdOrConfig: Html5QrcodeIdentifier,
+        configuration: Html5QrcodeCameraScanConfig | undefined,
+        qrCodeSuccessCallback: QrcodeSuccessCallback | undefined,
+        qrCodeErrorCallback: QrcodeErrorCallback | undefined,
+        ): Promise<null>
+        {}
 
-                /** Stop scanning. */
-                stop(): Promise<void>
-                {}
+        /** Stop scanning. */
+        stop(): Promise<void>
+        {}
 
-                /** Clear the rendered surface. */
-                clear(): void {}
+        /** Clear the rendered surface. */
+        clear(): void {}
 
-                /** Scan a file. */
-                scanFile(
-                imageFile: File,
-                showImage?: boolean): Promise<string>
-                    {}
+        /** Scan a file. */
+        scanFile(
+        imageFile: File,
+        showImage?: boolean): Promise<string>
+        {}
 
-                    /** Returns list of cameras in the device, invokes permission request. */
-                static getCameras(): Promise<Array><CameraDevice>/> {}
-            }*@
-        
+        /** Returns list of cameras in the device, invokes permission request. */
+        static getCameras(): Promise<Array><CameraDevice>/> {}
+        }*@
+
         <br />
         <br />
         <br />
     </div>
-
 </body>
+
+

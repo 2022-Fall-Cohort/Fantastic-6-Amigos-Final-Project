@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Components.Routing;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using System.Diagnostics;
 using System.Net.Http.Formatting;
@@ -71,6 +72,7 @@ namespace WMS_Inventory_API_Client.Controllers
                 {
                     TempData["OK"] = true;
                     acctId = account.Id;
+                    TempData["AccountId"] = acctId;
 
                     return RedirectToAction(nameof(MainPage));
                 }
