@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WMS_Inventory_API_Client.Models.Container>
+@model IEnumerable<WMS_Inventory_API_Client.Models.Container>
 
 @{
     ViewData["Title"] = "Account";
@@ -26,6 +26,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
+            <th>
+	            Container Id
+	        </th>
             <th></th>
             <th></th>
         </tr>
@@ -43,6 +46,9 @@
                 <td data-title="Description">
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
+                <td>
+		            @Html.DisplayFor(modelItem => item.Id)
+		        </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
@@ -125,8 +131,8 @@
 
         var containerId = button.data('whatever'); // Extract info from data-* attributes
         var containerDesc = button.data('description');
-
-        $('.modal-title').text('Barcode for ' + containerDesc);
+        var str 
+        $('.modal-title').text(containerDesc + ' - Container Id ' + containerId);
         
        JsBarcode("#barcodeImage", containerId, {
 		    format: "CODE39",
@@ -137,9 +143,9 @@
         console.log(src)
         var pdf = new jsPDF();
         pdf.addImage(src, 10, 10);
-        pdf.text(containerDesc, 20, 10);
+        pdf.text(containerDesc + ' - Container Id ' + containerId, 20, 10);
         function createPDF() {
-            pdf.save('barcode.pdf');
+            pdf.save('ContainerId' + containerId + '.pdf');
 	    }
         var btn = document.getElementById("savePDF");
         btn.addEventListener('click', createPDF);
