@@ -3,7 +3,23 @@
 @{
     ViewData["Title"] = "Account";
 }
+<div class="wrapper">
+    <div class="sidebar">
 
+        <h2><img src="~/css/trans-removebg-preview__1_.png" alt="t"></h2>
+        <ul>
+            <li><a style="color: white; cursor: pointer" onClick='location.href="/Accounts/Details/1"'><u>Account</u></a></li>
+            <li><a style="color: white; cursor: pointer" onClick='location.href="/StorageLocation/Account/1"'><u>Storage Locations</u></a></li>
+            <li><a style="color: white; cursor: pointer" onClick='location.href="/Container/Account/1"'><u>Containers</u></a></li>
+            <li><a href='@Url.Action("Index", "Contents")'>Content</a></li>
+        </ul>
+        <div class="social_media">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+    <div class="main_content">
 <h1 class="page-header">Containers</h1>
 
 <hr />
@@ -34,10 +50,10 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td data-title="Location Name">
+                <td data-title="Storage Location">
                     @Html.DisplayFor(modelItem => item.StorageLocation.LocationName)
                 </td>
-                <td>
+                <td data-title="Type">
                     @Html.DisplayFor(modelItem => item.Type)
                 </td>
                 <td data-title="Description">
@@ -68,7 +84,8 @@
     int Id = 2;
 }
 
-
+</div>
+</div>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <form asp-action="Account">
