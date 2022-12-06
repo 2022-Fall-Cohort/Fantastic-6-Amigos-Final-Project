@@ -14,7 +14,33 @@
 </p>
 
 <div id="no-more-tables">
-<table class="table">
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>
+                  Storage Location
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @*<tbody>
+            <tr>
+                <td>Dom</td>
+                <td>6000</td>
+            </tr>
+            <tr class="active-row">
+                <td>Melissa</td>
+                <td>5150</td>
+            </tr>*@
+        </tbody>
+    </table>
+@*<table class="table">
     <thead>
         <tr>
             <th>
@@ -29,7 +55,7 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody>*@
         @foreach (var item in Model)
         {
             <tr>
