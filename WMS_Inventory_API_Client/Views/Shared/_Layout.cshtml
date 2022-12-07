@@ -16,6 +16,7 @@
                 <img src="~/css/WMS.logo.jpg" alt="WMS Logo" class="nav-image" id="nav-image">
             </a>
             <ul>
+                <li><a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><img class="redx" src="~/css/imgicon.png"></a></li>
                 <li><a style="color: white; cursor: pointer" onClick='location.href="/Accounts/Details/1"'><u>Account</u></a></li>
                 <li><a style="color: white; cursor: pointer" onClick='location.href="/StorageLocation/Account/1"'><u>Storage Locations</u></a></li>
                 <li><a style="color: white; cursor: pointer" onClick='location.href="/Container/Account/1"'><u>Containers</u></a></li>
@@ -24,9 +25,14 @@
 
             </ul>
         </div>
+        <div id="main">
+            <br />
+            <br />
+            <button class="openbtn" onclick="openNav()"> <img class="imgicon" id="imgiconlink" src="src/images/donuticon.png"> </button>
+        </div>
         <div class="main_content">
-    <header>
-@*        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" id="navBar">
+@*    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" id="navBar">
         
             <div class="container-fluid">
                 <div>
@@ -53,8 +59,10 @@
                 </div>
             </div>
 
-        </nav>
-*@    </header>
+*@       @* </nav>*@
+
+
+    @*</header>*@
         <div>
             <main role="main" class="pb-3">
                 @RenderBody()
@@ -89,8 +97,16 @@
             sidebar.style.visibility = 'hidden';
          @*   Footer.style.visibility = 'hidden'; *@
 	    }
-        
-
+        const imgicon = document.getElementById('imgiconlink')
+        function openNav() {
+            document.getElementById("sidebar").style.width = "250px";
+            document.getElementById("imgiconlink").style.display = "none";
+        }
+        /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+        function closeNav() {
+            document.getElementById("sidebar").style.width = "0";
+            document.getElementById("imgiconlink").style.display = "block"
+        }
     </script>
 </body>
 </html>
