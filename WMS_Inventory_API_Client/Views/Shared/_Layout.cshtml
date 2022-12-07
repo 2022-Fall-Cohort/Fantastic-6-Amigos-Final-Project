@@ -13,19 +13,16 @@
         <div class="sidebar" id="sidebar">
 
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="MainPage">
-                <img src="~/css/trans-removebg-preview__1_.png" alt="WMS Logo" class="nav-image" id="logo">
+                <img src="~/css/WMS.logo.jpg" alt="WMS Logo" class="nav-image" id="nav-image">
             </a>
             <ul>
                 <li><a style="color: white; cursor: pointer" onClick='location.href="/Accounts/Details/1"'><u>Account</u></a></li>
                 <li><a style="color: white; cursor: pointer" onClick='location.href="/StorageLocation/Account/1"'><u>Storage Locations</u></a></li>
                 <li><a style="color: white; cursor: pointer" onClick='location.href="/Container/Account/1"'><u>Containers</u></a></li>
-                <li><a href='@Url.Action("Index", "Contents")'>Content</a></li>
+                <li><a style="color: white; cursor: pointer" onClick='location.href="/Contents/Index"'><u>Contents</u></a></li>
+                <li><a style="color: white; cursor: pointer" onClick='location.href="/Home/Developers"'><u>Developers</u></a></li>
+
             </ul>
-            <div class="social_media">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
         </div>
         <div class="main_content">
     <header>
@@ -58,11 +55,11 @@
 
         </nav>
 *@    </header>
-    <div>
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+        <div>
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
     </div>
     </div>
 

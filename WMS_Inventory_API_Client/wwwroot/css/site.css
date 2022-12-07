@@ -1,16 +1,18 @@
 body {
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     /* background-image: linear-gradient( 320deg, hsl(180deg 99% 50%) 0%, hsl(86deg 18% 83%) 72%, hsl(16deg 100% 88%) 85%, hsl(16deg 100% 93%) 100% );*/
-    /* background-image: linear-gradient( 215deg, hsl(108deg 54% 42%) 0%, hsl(190deg 35% 40%) 33%, hsl(329deg 23% 47%) 67%, hsl(0deg 99% 50%) 100% );*/
+/*    background-image: linear-gradient( 215deg, hsl(108deg 54% 42%) 0%, hsl(190deg 35% 40%) 33%, hsl(329deg 23% 47%) 67%, hsl(0deg 99% 50%) 100% );
+*/    background-image: linear-gradient( 140deg, hsl(204deg 99% 34%) 0%, hsl(132deg 65% 40%) 33%, hsl(108deg 54% 71%) 50%, hsl(0deg 100% 88%) 67%, hsl(0deg 99% 50%) 100% );
     overflow-y: scroll;
-    background-image: linear-gradient( 140deg, hsl(204deg 99% 34%) 0%, hsl(132deg 65% 40%) 33%, hsl(108deg 54% 71%) 50%, hsl(0deg 100% 88%) 67%, hsl(0deg 99% 50%) 100% );
 }
+
 html {
     font-size: 14px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     position: relative;
     min-height: 100%;
 }
+
 img {
     width: 20%;
 }
@@ -22,11 +24,14 @@ img {
 }
 
 .nav-image {
-    width: 35px;
-    height: 40px;
-    align-content: flex-start;
-
+    display: block;
+    width: 70px;
+    height: 80px;
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
 }
+
 .menu-header {
     width: 550px;
     margin: auto;
@@ -40,6 +45,7 @@ img {
     font-size: 40px;
     text-align: center;
 }
+
 .menu {
     width: 700px;
     margin: auto;
@@ -52,10 +58,12 @@ img {
     font-size: 30px;
     text-align: left;
 }
+
 .scanner {
-    align-items:center;
+    align-items: center;
     font-size: 10px;
 }
+
 .search {
     margin: auto;
     color: white;
@@ -71,12 +79,12 @@ img {
 }
 
 .center {
-    display:flex;
-    justify-content:center;
+    display: flex;
+    justify-content: center;
 }
 
 .link {
-    color: darkred; 
+    color: darkred;
     cursor: pointer;
 }
 
@@ -84,12 +92,14 @@ th, td {
     border: 2px solid black;
     width: fit-content;
 }
-caption{
+
+caption {
     caption-side: top;
     text-align: start;
     font-size: 15px;
     color: white;
 }
+
 .page-header {
     width: 550px;
     margin: auto;
@@ -103,26 +113,32 @@ caption{
     font-size: 40px;
     text-align: center;
 }
+
 .footer {
     position: fixed;
-    background:white;
+    background: white;
 }
+
 nav a:hover {
     color: #0169ad;
     font-weight: bold;
 }
+
 ul a:hover {
     color: #0169ad;
-    font-weight: bold; 
+    font-weight: bold;
 }
+
 ul a {
-    color:white;  
+    color: white;
 }
+
 p a {
     color: white;
 }
+
 .reader {
-    font-size:10px;
+    font-size: 10px;
 }
 /*.container {
     display: flex;
@@ -131,9 +147,10 @@ p a {
     flex-wrap: wrap;
 }*/
 .dev-img {
-   width: 200px;
-   height: 200px;
+    width: 200px;
+    height: 200px;
 }
+
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -148,6 +165,7 @@ p a {
     margin: 5px;
     text-align: center;
 }
+
 p {
     text-align: center;
 }
@@ -201,18 +219,22 @@ p {
         font-size: 20px;
         text-align: center;
     }
+
     .menu-logo {
-        width:10%;
+        width: 10%;
     }
+
     .menu-header {
-        width:300px;
-        font-size:15px;
+        width: 300px;
+        font-size: 15px;
     }
+
     .menu {
         width: 300px;
         font-size: 15px;
     }
 }
+
 @media only screen and (max-width:500px) {
     tbody, tr, td {
         display: block;
@@ -243,5 +265,108 @@ p {
     }
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+body {
+    background-color: #f3f5f9;
+}
+
+.wrapper {
+    display: flex;
+    position: relative;
+}
 
 
+    .wrapper .sidebar { /*  this */
+        width: 200px;
+        height: 100%;
+        /* background: #222222;*/
+        background-color: gray;
+        padding: 30px 0px;
+        position: fixed;
+    }
+
+        .wrapper .sidebar h2 {
+            color: #fff;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .wrapper .sidebar ul li {
+            padding: 15px;
+            border-bottom: 1px solid #bdb8d7;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+            .wrapper .sidebar ul li a { /*  this */
+                color: #fcfcfc;
+                display: block;
+            }
+
+                .wrapper .sidebar ul li a .fas {
+                    width: 25px;
+                }
+
+            .wrapper .sidebar ul li:hover {
+                background-color: #01111a;
+            }
+
+                .wrapper .sidebar ul li:hover a {
+                    color: #fff;
+                }
+
+        .wrapper .sidebar .social_media {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+        }
+
+            .wrapper .sidebar .social_media a {
+                display: block;
+                width: 40px;
+                background: #dbdbdb;
+                height: 40px;
+                line-height: 45px;
+                text-align: center;
+                margin: 0 5px;
+                color: #02010a;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            }
+
+    .wrapper .main_content {
+        width: 100%;
+        margin-left: 200px;
+    }
+
+        .wrapper .main_content .header {
+            padding: 20px;
+            background: #fff;
+            color: #717171;
+            border-bottom: 1px solid #e0e4e8;
+        }
+
+        .wrapper .main_content .info {
+            margin: 20px;
+            color: #717171;
+            line-height: 25px;
+        }
+
+            .wrapper .main_content .info div {
+                margin-bottom: 20px;
+            }
+
+            .wrapper .sidebar .nav-image {
+                text-align: center;
+            }
