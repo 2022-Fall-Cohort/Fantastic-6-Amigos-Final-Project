@@ -6,6 +6,75 @@ body {
     overflow-y: scroll;
 }
 
+.sidebar {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 150px;
+    left: 0;
+    background-color: transparent;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+}
+
+    /* sidebar links */
+    .sidebar a {
+        padding: 8px 8px 8px 25px;
+        text-decoration: none;
+        font-size: 20px;
+        color: #4aa632;
+        -webkit-text-stroke-width: .3px;
+        background-color: transparent;
+        display: block;
+        transition: 0.3s;
+    }
+
+        /* mouse over the navigation links, change their color */
+        .sidebar a:hover {
+            color: #0169ad;
+        }
+
+    /*the close button */
+    .sidebar .closebtn {
+        position: absolute;
+        top: 0;
+        font-size: 36px;
+        margin-left: 10px;
+    }
+
+/* open the sidebar */
+.openbtn {
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    border: none;
+    position: fixed;
+    width: 30px;
+    height: 30px;
+}
+/* red X that on click closes sidebar */
+.redx {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: left;
+
+}
+/* Donut that on click opens sidebar */
+.imgicon {
+    
+    width: 30px;
+    height: 30px;
+}
+    .openbtn:hover {
+    background-color: #0169ad;
+}
+
+#main {
+    transition: margin-left .5s; /*transition effect */
+    padding: 10px;
+}
 html {
     font-size: 14px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -76,6 +145,7 @@ img {
     width: fit-content;
     margin: auto;
     align-self: center;
+    posotion
 }
 
 .center {
@@ -278,20 +348,23 @@ body {
     background-color: #f3f5f9;
 }
 
-.wrapper {
+/*.wrapper {
     display: flex;
     position: relative;
 }
+*/
 
-
-    .wrapper .sidebar { /*  this */
-        width: 200px;
-        height: 100%;
-        /* background: #222222;*/
-        background-color: gray;
-        padding: 30px 0px;
-        position: fixed;
-    }
+    /*.wrapper .sidebar {*/ /*  this */
+        /*height: 100%;*/ /* 100% Full-height */
+        /*width: 0;*/ /* 0 width - change this with JavaScript */
+        /*position: fixed;*/ /* Stay in place */
+        /*z-index: 1;*/ /* Stay on top */
+        /*top: 0;
+        left: 0;
+        background-color: transparent;
+        overflow-x: hidden;*/ /* Disable horizontal scroll */
+        /*transition: 0.5s;*/ /* 0.5 second transition effect to slide in the sidebar */
+    /*}
 
         .wrapper .sidebar h2 {
             color: #fff;
@@ -307,8 +380,8 @@ body {
             border-top: 1px solid rgba(255,255,255,0.05);
         }
 
-            .wrapper .sidebar ul li a { /*  this */
-                color: #fcfcfc;
+            .wrapper .sidebar ul li a {*/ /*  this */
+                /*color: #fcfcfc;
                 display: block;
             }
 
@@ -369,4 +442,4 @@ body {
 
             .wrapper .sidebar .nav-image {
                 text-align: center;
-            }
+            }*/

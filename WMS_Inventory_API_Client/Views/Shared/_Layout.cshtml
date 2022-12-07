@@ -10,13 +10,16 @@
 </head>
 <body>
     <div class="wrapper">
-        <div class="sidebar" id="sidebar">
-
+        <div class="sidebar" id="sidebar" style="visibility:hidden;">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><img class="redx"  src="~/css/redx.jfif"></a>
+            <br/>
+            <br/>
+            <br />
+            <br />
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="MainPage">
                 <img src="~/css/WMS.logo.jpg" alt="WMS Logo" class="nav-image" id="nav-image">
             </a>
-            <ul>
-                <li><a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><img class="redx" src="~/css/imgicon.png"></a></li>
+            <ul>               
                 <li><a style="color: white; cursor: pointer" onClick='location.href="/Accounts/Details/1"'><u>Account</u></a></li>
                 <li><a style="color: white; cursor: pointer" onClick='location.href="/StorageLocation/Account/1"'><u>Storage Locations</u></a></li>
                 <li><a style="color: white; cursor: pointer" onClick='location.href="/Container/Account/1"'><u>Containers</u></a></li>
@@ -25,10 +28,10 @@
 
             </ul>
         </div>
-        <div id="main">
+        <div id="main" style="visibility:hidden;">
             <br />
             <br />
-            <button class="openbtn" onclick="openNav()"> <img class="imgicon" id="imgiconlink" src="src/images/donuticon.png"> </button>
+            <button class="openbtn" onclick="openNav()"> <img class="imgicon" id="imgiconlink" src="~/css/imgicon.png"> </button>
         </div>
         <div class="main_content">
 @*    <header>
@@ -76,11 +79,18 @@
             &copy; 2022 - WMS_Inventory_API_Client - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer> *@
+    
+    
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+   
+    
+    
     <script>
+        var ImgIcon = document.getElementById("imgiconlink");
         var CreateAccount = document.getElementById("CreateAccount");
         var Login = document.getElementById("Login");
         //var NavBar = document.getElementById("navBar")
@@ -89,24 +99,29 @@
      @*   var Footer = document.getElementById("footer"); *@
         if ((Login == null)&&(CreateAccount == null)&&(mainmenu == null)){
             //NavBar.style.visibility = 'visible';
+            ImgIcon.style.visibility = 'visible';
             sidebar.style.visibility = 'visible';
           @*  Footer.style.visibility = 'visible'; *@
 	    }
         else {
             //NavBar.style.visibility = 'hidden';
+            ImgIcon.style.visibility = 'hidden';
             sidebar.style.visibility = 'hidden';
          @*   Footer.style.visibility = 'hidden'; *@
 	    }
         const imgicon = document.getElementById('imgiconlink')
         function openNav() {
             document.getElementById("sidebar").style.width = "250px";
-            document.getElementById("imgiconlink").style.display = "none";
+            document.getElementById("main").style.marginLeft = "250px";
+            document.getElementById("imgiconlink").style.visibility = "hidden";
         }
         /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
         function closeNav() {
             document.getElementById("sidebar").style.width = "0";
-            document.getElementById("imgiconlink").style.display = "block"
+            document.getElementById("main").style.marginLeft = "0";
+            document.getElementById("imgiconlink").style.visibility = "visible"
         }
+   
     </script>
 </body>
 </html>
