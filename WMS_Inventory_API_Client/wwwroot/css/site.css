@@ -140,8 +140,6 @@ p a {
     width: 90%;
     justify-content: center;
 }
-
-
 .col {
     flex: 0 0 calc(15%);
     flex-basis: 30%;
@@ -151,12 +149,14 @@ p a {
 p {
     text-align: center;
 }
-
+#contacticons {
+    padding-top: 3px;
+    padding-bottom: 5px;
+    border-radius: 25%;
+}
 
 @media only screen and (max-width:768px) {
-    #no-more-tables tbody,
-    #no-more-tables tr,
-    #no-more-tables td {
+    #no-more-tables tbody, #no-more-tables tr, #no-more-tables td {
         display: block;
     }
 
