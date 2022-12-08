@@ -221,7 +221,7 @@ p a {
     height: 200px;
 }
 
-.row {
+.devrow {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
