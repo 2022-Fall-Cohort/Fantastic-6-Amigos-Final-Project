@@ -224,8 +224,9 @@ p a {
 .row {
     display: flex;
     flex-wrap: wrap;
-    width: 90%;
+    width: 100%;
     justify-content: center;
+    margin-left: 40px;
 }
 .col {
     flex: 0 0 calc(15%);
