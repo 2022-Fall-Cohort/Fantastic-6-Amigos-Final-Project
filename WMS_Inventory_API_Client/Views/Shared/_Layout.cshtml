@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,7 +9,32 @@
     <link rel="stylesheet" href="~/WMS_Inventory_API_Client.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
+    <div class="wrapper">
+        <div class="sidebar" id="sidebar" style="visibility:hidden;">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><img class="redx"  src="~/css/redx.jfif"></a>
+            <br/>
+            <br/>
+            <br />
+            <br />
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="MainPage">
+                <img src="~/css/WMS.logo.jpg" alt="WMS Logo" class="nav-image" id="nav-image">
+            </a>
+            <ul>               
+                <li><a style="color: white; cursor: pointer" onClick='location.href="/Accounts/Details/1"'><u>Account</u></a></li>
+                <li><a style="color: white; cursor: pointer" onClick='location.href="/StorageLocation/Account/1"'><u>Storage Locations</u></a></li>
+                <li><a style="color: white; cursor: pointer" onClick='location.href="/Container/Account/1"'><u>Containers</u></a></li>
+                <li><a style="color: white; cursor: pointer" onClick='location.href="/Contents/Index"'><u>Contents</u></a></li>
+                <li><a style="color: white; cursor: pointer" onClick='location.href="/Home/Developers"'><u>Developers</u></a></li>
+
+            </ul>
+        </div>
+        <div id="main" style="visibility:hidden;">
+            <br />
+            <br />
+            <button class="openbtn" onclick="openNav()"> <img class="imgicon" id="imgiconlink" src="~/css/imgicon.png"> </button>
+        </div>
+        <div class="main_content">
+@*    <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" id="navBar">
         
             <div class="container-fluid">
@@ -25,35 +50,28 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" id="LoggedIn">
-                       <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MainPage">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Developers">Developers</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="Index">Account</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="StorageLocation" asp-action="Index">Locations</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Container" asp-action="Account">Containers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Contents" asp-action="Index">Content</a>
-                        </li>
-			</ul> 
+                    </ul>
+                        
                 </div>
             </div>
 
-        </nav>
-    </header>
-    <div>
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+*@       @* </nav>*@
+
+
+    @*</header>*@
+        <div>
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
     </div>
 
    @* <footer id="footer" class="border-top footer text-muted">
@@ -61,25 +79,49 @@
             &copy; 2022 - WMS_Inventory_API_Client - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer> *@
+    
+    
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+   
+    
+    
     <script>
+        var ImgIcon = document.getElementById("imgiconlink");
         var CreateAccount = document.getElementById("CreateAccount");
         var Login = document.getElementById("Login");
-        var NavBar = document.getElementById("navBar")
+        //var NavBar = document.getElementById("navBar")
+        var sidebar = document.getElementById("sidebar");
+        var mainmenu = document.getElementById("menu");
      @*   var Footer = document.getElementById("footer"); *@
-        if ((Login == null)&&(CreateAccount == null)){
-            NavBar.style.visibility = 'visible';
+        if ((Login == null)&&(CreateAccount == null)&&(mainmenu == null)){
+            //NavBar.style.visibility = 'visible';
+            ImgIcon.style.visibility = 'visible';
+            sidebar.style.visibility = 'visible';
           @*  Footer.style.visibility = 'visible'; *@
 	    }
         else {
-            NavBar.style.visibility = 'hidden';
+            //NavBar.style.visibility = 'hidden';
+            ImgIcon.style.visibility = 'hidden';
+            sidebar.style.visibility = 'hidden';
          @*   Footer.style.visibility = 'hidden'; *@
 	    }
-        
-
+        const imgicon = document.getElementById('imgiconlink')
+        function openNav() {
+            document.getElementById("sidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+            document.getElementById("imgiconlink").style.visibility = "hidden";
+        }
+        /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+        function closeNav() {
+            document.getElementById("sidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+            document.getElementById("imgiconlink").style.visibility = "visible"
+        }
+   
     </script>
 </body>
 </html>
